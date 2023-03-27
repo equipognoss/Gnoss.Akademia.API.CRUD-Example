@@ -1,0 +1,26 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="ClasesGeneradas\**" />
+    <EmbeddedResource Remove="ClasesGeneradas\**" />
+    <None Remove="ClasesGeneradas\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="ClasesGeneradas\akp1.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Config\oAuth_akp1.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
