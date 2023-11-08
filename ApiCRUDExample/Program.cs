@@ -1,15 +1,14 @@
 ﻿// See https://aka.ms/new-console-template for more information
-using GenerodemoOntology;
 using Gnoss.ApiWrapper;
 using Gnoss.ApiWrapper.ApiModel;
 using Gnoss.ApiWrapper.Model;
-using PersonademoOntology;
-using PeliculademoOntology;
 using System;
 using System.Security.Cryptography;
 using System.Xml;
 using System.Text;
-
+using GenerocrudapiOntology;
+using PersonacrudapiOntology;
+using PeliculacrudapiOntology;
 
 #region Conexión y datos de la comunidad
 
@@ -80,7 +79,7 @@ if (!generoSR.Uploaded)
         Guid guid2 = new Guid("");
         ComplexOntologyResource resorceLoad = personActor1.ToGnossApiResource(mResourceApi, null, guid1, guid2);
     */
-    ComplexOntologyResource resorceLoad = personActor1.ToGnossApiResource(mResourceApi, null);
+    ComplexOntologyResource resorceLoad = personActor1.ToGnossApiResource(mResourceApi, null, Guid.NewGuid(), Guid.NewGuid());
     mResourceApi.LoadComplexSemanticResource(resorceLoad);
 }
 
@@ -135,7 +134,7 @@ string uri = "";
 	Person personActor2 = new Person();
     personActor2.Schema_name = "Actor2";
 
-    ComplexOntologyResource resorceLoad = personActor2.ToGnossApiResource(mResourceApi, null);
+    ComplexOntologyResource resorceLoad = personActor2.ToGnossApiResource(mResourceApi, null, Guid.NewGuid(), Guid.NewGuid());
     mResourceApi.LoadComplexSemanticResource(resorceLoad);
 }
 
@@ -166,14 +165,14 @@ string uri = "";
 
 #region Carga de película con actor
 
-PeliculademoOntology.Movie pelicula = new PeliculademoOntology.Movie();
+Movie pelicula = new Movie();
 pelicula.Schema_image = "https://walpaper.es/wallpaper/2015/11/wallpaper-gratis-de-un-espectacular-paisaje-en-color-azul-en-hd.jpg";
 pelicula.Schema_name = "PruebaConImagen";
 pelicula.Schema_description = "PruebaConImagen";
 pelicula.Schema_duration = new List<int>() { 6 };
 pelicula.IdsSchema_actor = new List<String>() { uri };
 mResourceApi.ChangeOntoly("peliculaakademia.owl");
-ComplexOntologyResource resorceToLoad = pelicula.ToGnossApiResource(mResourceApi, null);
+ComplexOntologyResource resorceToLoad = pelicula.ToGnossApiResource(mResourceApi, null, Guid.NewGuid(), Guid.NewGuid());
 string idPeliculaCargada = mResourceApi.LoadComplexSemanticResource(resorceToLoad);
 
 #endregion Carga de película con actor
@@ -292,7 +291,6 @@ string idPeliculaCargada = mResourceApi.LoadComplexSemanticResource(resorceToLoa
 
 #endregion Añadir triples
 
-
 #region Limpiar las películas de categorías para poder cargar/actualizar el Tesauro de la comunidad
 //Método que desetiqueta las películas para poder modificar el TESAURO
 void BorrarCategoriasDeRecursos()
@@ -318,6 +316,20 @@ void BorrarCategoriasDeRecursos()
 	}
 }
 #endregion
+
+#region Carga de un tesauro semántico
+
+/* Propiedad  */
+
+
+
+
+
+
+
+
+#endregion
+
 
 
 /*

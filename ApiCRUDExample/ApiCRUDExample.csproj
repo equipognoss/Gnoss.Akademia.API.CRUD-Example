@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="ClasesGeneradas\akp1.csproj" />
+    <ProjectReference Include="..\ClasesGeneradas\apicrud-example.csproj" />
   </ItemGroup>
 
   <ItemGroup>

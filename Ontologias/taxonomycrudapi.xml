@@ -1,0 +1,145 @@
+<config>
+    <ConfiguracionGeneral>
+        <namespace>gftaxonomy</namespace>
+        <idiomasOnto>
+            <idiomaOnto>es</idiomaOnto>
+        </idiomasOnto>
+        <ocultarTituloDescpImgDoc></ocultarTituloDescpImgDoc>
+        <TituloDoc EntidadID="http://www.w3.org/2008/05/skos#Collection">http://purl.org/dc/elements/1.1/identifier</TituloDoc>
+		<CategorizacionTesauroGnossObligatoria>false</CategorizacionTesauroGnossObligatoria>
+        <HtmlNuevo>true</HtmlNuevo>
+    </ConfiguracionGeneral>
+    <EspefPropiedad>
+        <Propiedad  ID="http://www.w3.org/2008/05/skos#member" EntidadID="http://www.w3.org/2008/05/skos#Collection">
+            <AtrNombre>Nodo raiz:</AtrNombre>
+            <AtrNombreLectura>Nodo raiz:</AtrNombreLectura>
+			<SeleccionEntidad>
+				<TipoSeleccion MultiIdioma="true">Autocompletar</TipoSeleccion>
+				<LinkARecurso IrAComunidad="true" PropiedadID="http://www.w3.org/2008/05/skos#prefLabel"></LinkARecurso>
+				<Grafo>gftaxonomy.owl</Grafo>
+				<UrlTipoEntSolicitada>http://www.w3.org/2008/05/skos#Concept</UrlTipoEntSolicitada>
+				<PropsEntEdicion>
+					<NameProp>http://www.w3.org/2008/05/skos#prefLabel</NameProp>
+				</PropsEntEdicion>
+				<PropsEntLectura>
+					<Propiedad ID="http://www.w3.org/2008/05/skos#prefLabel" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+						<AtrNombreLectura xml:lang="es">Titulo</AtrNombreLectura>
+					</Propiedad>
+				</PropsEntLectura>
+			</SeleccionEntidad>		
+        </Propiedad>
+        <Propiedad  ID="http://www.w3.org/2008/05/skos#scopeNote" EntidadID="http://www.w3.org/2008/05/skos#Collection">
+            <AtrNombre>Proposito</AtrNombre>
+            <AtrNombreLectura>Proposito</AtrNombreLectura>
+        </Propiedad>
+        <Propiedad  ID="http://purl.org/dc/elements/1.1/source" EntidadID="http://www.w3.org/2008/05/skos#Collection">
+            <AtrNombre>Identificador</AtrNombre>
+            <AtrNombreLectura>Identificador</AtrNombreLectura>
+        </Propiedad>
+        <Propiedad  ID="http://www.w3.org/2008/05/skos#narrower" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+            <AtrNombre>Hijos</AtrNombre>
+            <AtrNombreLectura>Hijos</AtrNombreLectura>
+			<SeleccionEntidad>
+				<TipoSeleccion MultiIdioma="true">Autocompletar</TipoSeleccion>
+				<LinkARecurso IrAComunidad="true" PropiedadID="http://www.w3.org/2008/05/skos#prefLabel"></LinkARecurso>
+				<Grafo>gftaxonomy.owl</Grafo>
+				<UrlTipoEntSolicitada>http://www.w3.org/2008/05/skos#Concept</UrlTipoEntSolicitada>
+				<PropsEntEdicion>
+					<NameProp>http://www.w3.org/2008/05/skos#prefLabel</NameProp>
+				</PropsEntEdicion>
+				<PropsEntLectura>
+					<Propiedad ID="http://www.w3.org/2008/05/skos#prefLabel" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+						<AtrNombreLectura xml:lang="es">Titulo</AtrNombreLectura>
+					</Propiedad>
+				</PropsEntLectura>
+			</SeleccionEntidad>			     
+        </Propiedad>
+        <Propiedad  ID="http://www.w3.org/2008/05/skos#broader" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+            <AtrNombre>Padres</AtrNombre>
+            <AtrNombreLectura>Padres</AtrNombreLectura>
+			<SeleccionEntidad>
+				<TipoSeleccion MultiIdioma="true">Autocompletar</TipoSeleccion>
+				<LinkARecurso IrAComunidad="true" PropiedadID="http://www.w3.org/2008/05/skos#prefLabel"></LinkARecurso>
+				<Grafo>gftaxonomy.owl</Grafo>
+				<UrlTipoEntSolicitada>http://www.w3.org/2008/05/skos#Concept</UrlTipoEntSolicitada>
+				<PropsEntEdicion>
+					<NameProp>http://www.w3.org/2008/05/skos#prefLabel</NameProp>
+				</PropsEntEdicion>
+				<PropsEntLectura>
+					<Propiedad ID="http://www.w3.org/2008/05/skos#prefLabel" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+						<AtrNombreLectura xml:lang="es">Titulo</AtrNombreLectura>
+					</Propiedad>
+				</PropsEntLectura>
+			</SeleccionEntidad>			
+        </Propiedad>
+		 <Propiedad  ID="http://www.w3.org/2008/05/skos#related" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+            <AtrNombre>Nodos relacionados</AtrNombre>
+            <AtrNombreLectura>Nodos relacionados</AtrNombreLectura>
+			<SeleccionEntidad>
+				<TipoSeleccion MultiIdioma="true">Autocompletar</TipoSeleccion>
+				<LinkARecurso IrAComunidad="true" PropiedadID="http://www.w3.org/2008/05/skos#prefLabel"></LinkARecurso>
+				<Grafo>gftaxonomy.owl</Grafo>
+				<UrlTipoEntSolicitada>http://www.w3.org/2008/05/skos#Concept</UrlTipoEntSolicitada>
+				<PropsEntEdicion>
+					<NameProp>http://www.w3.org/2008/05/skos#prefLabel</NameProp>
+				</PropsEntEdicion>
+				<PropsEntLectura>
+					<Propiedad ID="http://www.w3.org/2008/05/skos#prefLabel" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+						<AtrNombreLectura xml:lang="es">Titulo</AtrNombreLectura>
+					</Propiedad>
+				</PropsEntLectura>
+			</SeleccionEntidad>			
+        </Propiedad>
+        <Propiedad  ID="http://www.w3.org/2008/05/skos#prefLabel" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+            <AtrNombre>Nombre de la categoria</AtrNombre>
+            <AtrNombreLectura>Nombre de la categoria</AtrNombreLectura>
+        </Propiedad>
+        <Propiedad  ID="http://www.w3.org/2008/05/skos#symbol" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+            <AtrNombre>Símbolo</AtrNombre>
+            <AtrNombreLectura>Símbolo</AtrNombreLectura>
+        </Propiedad>
+        <Propiedad  ID="http://purl.org/dc/elements/1.1/identifier" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+            <AtrNombre>Identificador</AtrNombre>
+            <AtrNombreLectura>Identificador</AtrNombreLectura>
+        </Propiedad>
+        <Propiedad  ID="http://purl.org/dc/elements/1.1/source" EntidadID="http://www.w3.org/2008/05/skos#Concept">
+            <AtrNombre>Fuente</AtrNombre>
+            <AtrNombreLectura>Fuente</AtrNombreLectura>
+        </Propiedad>
+    </EspefPropiedad>
+    <EspefEntidad>
+        <Entidad  ID="http://www.w3.org/2008/05/skos#Collection">
+            <AtrNombre>http://www.w3.org/2008/05/skos#Collection</AtrNombre>
+            <AtrNombreLectura>http://www.w3.org/2008/05/skos#Collection</AtrNombreLectura>
+            <OrdenEntidad>
+                <Grupo class="formtheme02">
+                    <Grupo class="fieldset">
+                        <Grupo Tipo="fieldset" class="mediumLabels">
+                            <NameProp>http://www.w3.org/2008/05/skos#member</NameProp> 
+                            <NameProp>http://www.w3.org/2008/05/skos#scopeNote</NameProp> 
+                            <NameProp>http://purl.org/dc/elements/1.1/source</NameProp>
+                        </Grupo>
+                    </Grupo>
+                </Grupo>
+            </OrdenEntidad>
+        </Entidad>
+        <Entidad  ID="http://www.w3.org/2008/05/skos#Concept">
+            <AtrNombre>http://www.w3.org/2008/05/skos#Concept</AtrNombre>
+            <AtrNombreLectura>http://www.w3.org/2008/05/skos#Concept</AtrNombreLectura>
+            <OrdenEntidad>
+                <Grupo class="formtheme02">
+                    <Grupo class="fieldset">
+                        <Grupo Tipo="fieldset" class="mediumLabels">
+                            <NameProp>http://www.w3.org/2008/05/skos#narrower</NameProp> 
+                            <NameProp>http://www.w3.org/2008/05/skos#broader</NameProp> 
+                            <NameProp>http://www.w3.org/2008/05/skos#prefLabel</NameProp> 
+                            <NameProp>http://www.w3.org/2008/05/skos#symbol</NameProp> 
+                            <NameProp>http://purl.org/dc/elements/1.1/identifier</NameProp> 
+                            <NameProp>http://purl.org/dc/elements/1.1/source</NameProp>
+                        </Grupo>
+                    </Grupo>
+                </Grupo>
+            </OrdenEntidad> 
+        </Entidad>
+    </EspefEntidad>
+</config>

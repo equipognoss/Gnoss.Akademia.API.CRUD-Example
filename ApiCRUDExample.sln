@@ -5,7 +5,7 @@ VisualStudioVersion = 17.3.32929.385
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ApiCRUDExample", "ApiCRUDExample\ApiCRUDExample.csproj", "{3E0B7537-00D3-4560-A8BE-3B39D2FB0D5A}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "akp1", "ApiCRUDExample\ClasesGeneradas\akp1.csproj", "{A06901BD-0E2E-4425-8C9E-4A823EFFC05C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "apicrud-example", "ClasesGeneradas\apicrud-example.csproj", "{F03A2AA9-61C7-4C67-983C-DA3373C02199}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{3E0B7537-00D3-4560-A8BE-3B39D2FB0D5A}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3E0B7537-00D3-4560-A8BE-3B39D2FB0D5A}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3E0B7537-00D3-4560-A8BE-3B39D2FB0D5A}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A06901BD-0E2E-4425-8C9E-4A823EFFC05C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A06901BD-0E2E-4425-8C9E-4A823EFFC05C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A06901BD-0E2E-4425-8C9E-4A823EFFC05C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A06901BD-0E2E-4425-8C9E-4A823EFFC05C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F03A2AA9-61C7-4C67-983C-DA3373C02199}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F03A2AA9-61C7-4C67-983C-DA3373C02199}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F03A2AA9-61C7-4C67-983C-DA3373C02199}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F03A2AA9-61C7-4C67-983C-DA3373C02199}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

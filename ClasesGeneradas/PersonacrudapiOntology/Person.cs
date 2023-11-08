@@ -9,20 +9,129 @@ using Gnoss.ApiWrapper;
 using Gnoss.ApiWrapper.Model;
 using Gnoss.ApiWrapper.Helpers;
 using GnossBase;
+using Es.Riam.Gnoss.Web.MVC.Models;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Collections;
 using Gnoss.ApiWrapper.Exceptions;
 using System.Diagnostics.CodeAnalysis;
-using Movie = PeliculademoOntology.Movie;
+using Movie = PeliculacrudapiOntology.Movie;
 
-namespace PersonademoOntology
+namespace PersonacrudapiOntology
 {
 	[ExcludeFromCodeCoverage]
 	public class Person : GnossOCBase
 	{
 		public Person() : base() { } 
 
+		public Person(SemanticResourceModel pSemCmsModel, LanguageEnum idiomaUsuario) : base()
+		{
+			GNOSSID = pSemCmsModel.RootEntities[0].Entity.Uri;
+			Try_actorOf = new List<Movie>();
+			SemanticPropertyModel propTry_actorOf = pSemCmsModel.GetPropertyByPath("http://try.gnoss.com/ontology#actorOf");
+			if(propTry_actorOf != null && propTry_actorOf.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propTry_actorOf.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Movie try_actorOf = new Movie(propValue.RelatedEntity,idiomaUsuario);
+						Try_actorOf.Add(try_actorOf);
+					}
+				}
+			}
+			Try_authorOf = new List<Movie>();
+			SemanticPropertyModel propTry_authorOf = pSemCmsModel.GetPropertyByPath("http://try.gnoss.com/ontology#authorOf");
+			if(propTry_authorOf != null && propTry_authorOf.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propTry_authorOf.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Movie try_authorOf = new Movie(propValue.RelatedEntity,idiomaUsuario);
+						Try_authorOf.Add(try_authorOf);
+					}
+				}
+			}
+			Try_place = new List<PlacePath>();
+			SemanticPropertyModel propTry_place = pSemCmsModel.GetPropertyByPath("http://try.gnoss.com/ontology#place");
+			if(propTry_place != null && propTry_place.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propTry_place.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						PlacePath try_place = new PlacePath(propValue.RelatedEntity,idiomaUsuario);
+						Try_place.Add(try_place);
+					}
+				}
+			}
+			Try_directorOf = new List<Movie>();
+			SemanticPropertyModel propTry_directorOf = pSemCmsModel.GetPropertyByPath("http://try.gnoss.com/ontology#directorOf");
+			if(propTry_directorOf != null && propTry_directorOf.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propTry_directorOf.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Movie try_directorOf = new Movie(propValue.RelatedEntity,idiomaUsuario);
+						Try_directorOf.Add(try_directorOf);
+					}
+				}
+			}
+			this.Schema_name = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/name"));
+		}
+
+		public Person(SemanticEntityModel pSemCmsModel, LanguageEnum idiomaUsuario) : base()
+		{
+			mGNOSSID = pSemCmsModel.Entity.Uri;
+			mURL = pSemCmsModel.Properties.FirstOrDefault(p => p.PropertyValues.Any(prop => prop.DownloadUrl != null))?.FirstPropertyValue.DownloadUrl;
+			Try_actorOf = new List<Movie>();
+			SemanticPropertyModel propTry_actorOf = pSemCmsModel.GetPropertyByPath("http://try.gnoss.com/ontology#actorOf");
+			if(propTry_actorOf != null && propTry_actorOf.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propTry_actorOf.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Movie try_actorOf = new Movie(propValue.RelatedEntity,idiomaUsuario);
+						Try_actorOf.Add(try_actorOf);
+					}
+				}
+			}
+			Try_authorOf = new List<Movie>();
+			SemanticPropertyModel propTry_authorOf = pSemCmsModel.GetPropertyByPath("http://try.gnoss.com/ontology#authorOf");
+			if(propTry_authorOf != null && propTry_authorOf.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propTry_authorOf.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Movie try_authorOf = new Movie(propValue.RelatedEntity,idiomaUsuario);
+						Try_authorOf.Add(try_authorOf);
+					}
+				}
+			}
+			Try_place = new List<PlacePath>();
+			SemanticPropertyModel propTry_place = pSemCmsModel.GetPropertyByPath("http://try.gnoss.com/ontology#place");
+			if(propTry_place != null && propTry_place.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propTry_place.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						PlacePath try_place = new PlacePath(propValue.RelatedEntity,idiomaUsuario);
+						Try_place.Add(try_place);
+					}
+				}
+			}
+			Try_directorOf = new List<Movie>();
+			SemanticPropertyModel propTry_directorOf = pSemCmsModel.GetPropertyByPath("http://try.gnoss.com/ontology#directorOf");
+			if(propTry_directorOf != null && propTry_directorOf.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propTry_directorOf.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Movie try_directorOf = new Movie(propValue.RelatedEntity,idiomaUsuario);
+						Try_directorOf.Add(try_directorOf);
+					}
+				}
+			}
+			this.Schema_name = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/name"));
+		}
 
 		public virtual string RdfType { get { return "http://schema.org/Person"; } }
 		public virtual string RdfsLabel { get { return "http://schema.org/Person"; } }
@@ -35,6 +144,10 @@ namespace PersonademoOntology
 		[RDFProperty("http://try.gnoss.com/ontology#authorOf")]
 		public  List<Movie> Try_authorOf { get; set;}
 		public List<string> IdsTry_authorOf { get; set;}
+
+		[LABEL(LanguageEnum.es,"Lugar de nacimiento")]
+		[RDFProperty("http://try.gnoss.com/ontology#place")]
+		public  List<PlacePath> Try_place { get; set;}
 
 		[LABEL(LanguageEnum.es,"Director / Directora de")]
 		[RDFProperty("http://try.gnoss.com/ontology#directorOf")]
@@ -58,16 +171,31 @@ namespace PersonademoOntology
 		internal override void GetEntities()
 		{
 			base.GetEntities();
+			if(Try_place!=null){
+				foreach(PlacePath prop in Try_place){
+					prop.GetProperties();
+					prop.GetEntities();
+					OntologyEntity entityPlacePath = new OntologyEntity("http://try.gnoss.com/ontology#PlacePath", "http://try.gnoss.com/ontology#PlacePath", "try:place", prop.propList, prop.entList);
+				entList.Add(entityPlacePath);
+				prop.Entity = entityPlacePath;
+				}
+			}
 		} 
 		public virtual ComplexOntologyResource ToGnossApiResource(ResourceApi resourceAPI, List<string> listaDeCategorias)
 		{
 			return ToGnossApiResource(resourceAPI, listaDeCategorias, Guid.Empty, Guid.Empty);
 		}
 
-		public virtual ComplexOntologyResource ToGnossApiResource(ResourceApi resourceAPI, List<string> listaDeCategorias, Guid idrecurso, Guid idarticulo)
+		public virtual ComplexOntologyResource ToGnossApiResource(ResourceApi resourceAPI, List<Guid> listaDeCategorias)
+		{
+			return ToGnossApiResource(resourceAPI, null, Guid.Empty, Guid.Empty, listaDeCategorias);
+		}
+
+		public virtual ComplexOntologyResource ToGnossApiResource(ResourceApi resourceAPI, List<string> listaDeCategorias, Guid idrecurso, Guid idarticulo, List<Guid> listaIdDeCategorias = null)
 		{
 			ComplexOntologyResource resource = new ComplexOntologyResource();
-			Ontology ontology=null;
+			Ontology ontology = null;
+			GetEntities();
 			GetProperties();
 			if(idrecurso.Equals(Guid.Empty) && idarticulo.Equals(Guid.Empty))
 			{
@@ -78,7 +206,8 @@ namespace PersonademoOntology
 			}
 			resource.Id = GNOSSID;
 			resource.Ontology = ontology;
-			resource.TextCategories=listaDeCategorias;
+			resource.TextCategories = listaDeCategorias;
+			resource.CategoriesIds = listaIdDeCategorias;
 			AddResourceTitle(resource);
 			AddResourceDescription(resource);
 			AddImages(resource);
@@ -92,6 +221,23 @@ namespace PersonademoOntology
 			AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Person_{ResourceID}_{ArticleID}", "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", $"<http://schema.org/Person>", list, " . ");
 			AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Person_{ResourceID}_{ArticleID}", "http://www.w3.org/2000/01/rdf-schema#label", $"\"http://schema.org/Person\"", list, " . ");
 			AgregarTripleALista($"{resourceAPI.GraphsUrl}{ResourceID}", "http://gnoss/hasEntidad", $"<{resourceAPI.GraphsUrl}items/Person_{ResourceID}_{ArticleID}>", list, " . ");
+			if(this.Try_place != null)
+			{
+			foreach(var item0 in this.Try_place)
+			{
+				AgregarTripleALista($"{resourceAPI.GraphsUrl}items/PlacePath_{ResourceID}_{item0.ArticleID}", "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", $"<http://try.gnoss.com/ontology#PlacePath>", list, " . ");
+				AgregarTripleALista($"{resourceAPI.GraphsUrl}items/PlacePath_{ResourceID}_{item0.ArticleID}", "http://www.w3.org/2000/01/rdf-schema#label", $"\"http://try.gnoss.com/ontology#PlacePath\"", list, " . ");
+				AgregarTripleALista($"{resourceAPI.GraphsUrl}{ResourceID}", "http://gnoss/hasEntidad", $"<{resourceAPI.GraphsUrl}items/PlacePath_{ResourceID}_{item0.ArticleID}>", list, " . ");
+				AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Person_{ResourceID}_{ArticleID}", "http://try.gnoss.com/ontology#place", $"<{resourceAPI.GraphsUrl}items/PlacePath_{ResourceID}_{item0.ArticleID}>", list, " . ");
+				if(item0.IdsTry_placeNode != null)
+				{
+					foreach(var item2 in item0.IdsTry_placeNode)
+					{
+						AgregarTripleALista($"{resourceAPI.GraphsUrl}items/PlacePath_{ResourceID}_{item0.ArticleID}", "http://try.gnoss.com/ontology#placeNode", $"<{item2}>", list, " . ");
+					}
+				}
+			}
+			}
 				if(this.IdsTry_actorOf != null)
 				{
 					foreach(var item2 in this.IdsTry_actorOf)
@@ -115,7 +261,7 @@ namespace PersonademoOntology
 				}
 				if(this.Schema_name != null)
 				{
-					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Person_{ResourceID}_{ArticleID}",  "http://schema.org/name", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
+					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Person_{ResourceID}_{ArticleID}", "http://schema.org/name",  $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
 				}
 			return list;
 		}
@@ -125,7 +271,7 @@ namespace PersonademoOntology
 			List<string> list = new List<string>();
 			List<string> listaSearch = new List<string>();
 			AgregarTags(list);
-			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", $"\"personademo\"", list, " . ");
+			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", $"\"personacrudapi\"", list, " . ");
 			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://gnoss/type", $"\"http://schema.org/Person\"", list, " . ");
 			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://gnoss/hasfechapublicacion", $"{DateTime.Now.ToString("yyyyMMddHHmmss")}", list, " . ");
 			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://gnoss/hastipodoc", "\"5\"", list, " . ");
@@ -135,6 +281,31 @@ namespace PersonademoOntology
 			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://xmlns.com/foaf/0.1/firstName", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
 			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://gnoss/hasnombrecompleto", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
 			string search = string.Empty;
+			if(this.Try_place != null)
+			{
+			foreach(var item0 in this.Try_place)
+			{
+				AgregarTripleALista($"http://gnossAuxiliar/{ResourceID.ToString().ToUpper()}", "http://gnoss/hasEntidadAuxiliar", $"<{resourceAPI.GraphsUrl}items/PlacePath_{ResourceID}_{item0.ArticleID}>", list, " . ");
+				AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://try.gnoss.com/ontology#place", $"<{resourceAPI.GraphsUrl}items/PlacePath_{ResourceID}_{item0.ArticleID}>", list, " . ");
+				if(item0.IdsTry_placeNode != null)
+				{
+					foreach(var item2 in item0.IdsTry_placeNode)
+					{
+					Regex regex = new Regex(@"\/items\/.+_[0-9A-Fa-f]{8}[-]?(?:[0-9A-Fa-f]{4}[-]?){3}[0-9A-Fa-f]{12}_[0-9A-Fa-f]{8}[-]?(?:[0-9A-Fa-f]{4}[-]?){3}[0-9A-Fa-f]{12}");
+					string itemRegex = item2;
+					if (regex.IsMatch(itemRegex))
+					{
+						itemRegex = $"http://gnoss/{resourceAPI.GetShortGuid(itemRegex).ToString().ToUpper()}";
+					}
+					else
+					{
+						itemRegex = itemRegex.ToLower();
+					}
+						AgregarTripleALista($"{resourceAPI.GraphsUrl}items/PlacePath_{ResourceID}_{item0.ArticleID}", "http://try.gnoss.com/ontology#placeNode", $"<{itemRegex}>", list, " . ");
+					}
+				}
+			}
+			}
 				if(this.IdsTry_actorOf != null)
 				{
 					foreach(var item2 in this.IdsTry_actorOf)
@@ -188,7 +359,7 @@ namespace PersonademoOntology
 				}
 				if(this.Schema_name != null)
 				{
-					AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}",  "http://schema.org/name", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
+					AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://schema.org/name",  $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
 				}
 			if (listaSearch != null && listaSearch.Count > 0)
 			{
@@ -227,7 +398,7 @@ namespace PersonademoOntology
 
 		public override string GetURI(ResourceApi resourceAPI)
 		{
-			return $"{resourceAPI.GraphsUrl}items/PersonademoOntology_{ResourceID}_{ArticleID}";
+			return $"{resourceAPI.GraphsUrl}items/PersonacrudapiOntology_{ResourceID}_{ArticleID}";
 		}
 
 

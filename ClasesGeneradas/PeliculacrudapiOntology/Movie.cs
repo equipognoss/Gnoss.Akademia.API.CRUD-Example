@@ -9,20 +9,312 @@ using Gnoss.ApiWrapper;
 using Gnoss.ApiWrapper.Model;
 using Gnoss.ApiWrapper.Helpers;
 using GnossBase;
+using Es.Riam.Gnoss.Web.MVC.Models;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Collections;
 using Gnoss.ApiWrapper.Exceptions;
 using System.Diagnostics.CodeAnalysis;
-using Genre = GenerodemoOntology.Genre;
-using Person = PersonademoOntology.Person;
+using Genre = GenerocrudapiOntology.Genre;
+using Person = PersonacrudapiOntology.Person;
 
-namespace PeliculademoOntology
+namespace PeliculacrudapiOntology
 {
 	[ExcludeFromCodeCoverage]
 	public class Movie : GnossOCBase
 	{
 		public Movie() : base() { } 
+
+		public Movie(SemanticResourceModel pSemCmsModel, LanguageEnum idiomaUsuario) : base()
+		{
+			GNOSSID = pSemCmsModel.RootEntities[0].Entity.Uri;
+			Schema_genre = new List<Genre>();
+			SemanticPropertyModel propSchema_genre = pSemCmsModel.GetPropertyByPath("http://schema.org/genre");
+			if(propSchema_genre != null && propSchema_genre.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_genre.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Genre schema_genre = new Genre(propValue.RelatedEntity,idiomaUsuario);
+						Schema_genre.Add(schema_genre);
+					}
+				}
+			}
+			Schema_author = new List<Person>();
+			SemanticPropertyModel propSchema_author = pSemCmsModel.GetPropertyByPath("http://schema.org/author");
+			if(propSchema_author != null && propSchema_author.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_author.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Person schema_author = new Person(propValue.RelatedEntity,idiomaUsuario);
+						Schema_author.Add(schema_author);
+					}
+				}
+			}
+			Schema_rating = new List<Rating>();
+			SemanticPropertyModel propSchema_rating = pSemCmsModel.GetPropertyByPath("http://schema.org/rating");
+			if(propSchema_rating != null && propSchema_rating.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_rating.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Rating schema_rating = new Rating(propValue.RelatedEntity,idiomaUsuario);
+						Schema_rating.Add(schema_rating);
+					}
+				}
+			}
+			Schema_director = new List<Person>();
+			SemanticPropertyModel propSchema_director = pSemCmsModel.GetPropertyByPath("http://schema.org/director");
+			if(propSchema_director != null && propSchema_director.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_director.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Person schema_director = new Person(propValue.RelatedEntity,idiomaUsuario);
+						Schema_director.Add(schema_director);
+					}
+				}
+			}
+			Schema_actor = new List<Person>();
+			SemanticPropertyModel propSchema_actor = pSemCmsModel.GetPropertyByPath("http://schema.org/actor");
+			if(propSchema_actor != null && propSchema_actor.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_actor.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Person schema_actor = new Person(propValue.RelatedEntity,idiomaUsuario);
+						Schema_actor.Add(schema_actor);
+					}
+				}
+			}
+			SemanticPropertyModel propSchema_url = pSemCmsModel.GetPropertyByPath("http://schema.org/url");
+			this.Schema_url = new List<string>();
+			if (propSchema_url != null && propSchema_url.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_url.PropertyValues)
+				{
+					this.Schema_url.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_aggregateRating = pSemCmsModel.GetPropertyByPath("http://schema.org/aggregateRating");
+			this.Schema_aggregateRating = new List<string>();
+			if (propSchema_aggregateRating != null && propSchema_aggregateRating.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_aggregateRating.PropertyValues)
+				{
+					this.Schema_aggregateRating.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_productionCompany = pSemCmsModel.GetPropertyByPath("http://schema.org/productionCompany");
+			this.Schema_productionCompany = new List<string>();
+			if (propSchema_productionCompany != null && propSchema_productionCompany.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_productionCompany.PropertyValues)
+				{
+					this.Schema_productionCompany.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_recordedAt = pSemCmsModel.GetPropertyByPath("http://schema.org/recordedAt");
+			this.Schema_recordedAt = new List<string>();
+			if (propSchema_recordedAt != null && propSchema_recordedAt.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_recordedAt.PropertyValues)
+				{
+					this.Schema_recordedAt.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_countryOfOrigin = pSemCmsModel.GetPropertyByPath("http://schema.org/countryOfOrigin");
+			this.Schema_countryOfOrigin = new List<string>();
+			if (propSchema_countryOfOrigin != null && propSchema_countryOfOrigin.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_countryOfOrigin.PropertyValues)
+				{
+					this.Schema_countryOfOrigin.Add(propValue.Value);
+				}
+			}
+			this.Schema_duration = new List<int>();
+			SemanticPropertyModel propSchema_duration = pSemCmsModel.GetPropertyByPath("http://schema.org/duration");
+			if (propSchema_duration != null && propSchema_duration.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_duration.PropertyValues)
+				{
+					this.Schema_duration.Add(GetNumberIntPropertyMultipleValueSemCms(propValue).Value);
+				}
+			}
+			SemanticPropertyModel propSchema_inLanguage = pSemCmsModel.GetPropertyByPath("http://schema.org/inLanguage");
+			this.Schema_inLanguage = new List<string>();
+			if (propSchema_inLanguage != null && propSchema_inLanguage.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_inLanguage.PropertyValues)
+				{
+					this.Schema_inLanguage.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_award = pSemCmsModel.GetPropertyByPath("http://schema.org/award");
+			this.Schema_award = new List<string>();
+			if (propSchema_award != null && propSchema_award.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_award.PropertyValues)
+				{
+					this.Schema_award.Add(propValue.Value);
+				}
+			}
+			this.Schema_description = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/description"));
+			this.Schema_image = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/image"));
+			this.Schema_name = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/name"));
+var item0 = GetDateValuePropertySemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/datePublished"));
+if(item0.HasValue){
+			this.Schema_datePublished = item0.Value;
+}
+			this.Schema_contentRating = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/contentRating"));
+		}
+
+		public Movie(SemanticEntityModel pSemCmsModel, LanguageEnum idiomaUsuario) : base()
+		{
+			mGNOSSID = pSemCmsModel.Entity.Uri;
+			mURL = pSemCmsModel.Properties.FirstOrDefault(p => p.PropertyValues.Any(prop => prop.DownloadUrl != null))?.FirstPropertyValue.DownloadUrl;
+			Schema_genre = new List<Genre>();
+			SemanticPropertyModel propSchema_genre = pSemCmsModel.GetPropertyByPath("http://schema.org/genre");
+			if(propSchema_genre != null && propSchema_genre.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_genre.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Genre schema_genre = new Genre(propValue.RelatedEntity,idiomaUsuario);
+						Schema_genre.Add(schema_genre);
+					}
+				}
+			}
+			Schema_author = new List<Person>();
+			SemanticPropertyModel propSchema_author = pSemCmsModel.GetPropertyByPath("http://schema.org/author");
+			if(propSchema_author != null && propSchema_author.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_author.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Person schema_author = new Person(propValue.RelatedEntity,idiomaUsuario);
+						Schema_author.Add(schema_author);
+					}
+				}
+			}
+			Schema_rating = new List<Rating>();
+			SemanticPropertyModel propSchema_rating = pSemCmsModel.GetPropertyByPath("http://schema.org/rating");
+			if(propSchema_rating != null && propSchema_rating.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_rating.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Rating schema_rating = new Rating(propValue.RelatedEntity,idiomaUsuario);
+						Schema_rating.Add(schema_rating);
+					}
+				}
+			}
+			Schema_director = new List<Person>();
+			SemanticPropertyModel propSchema_director = pSemCmsModel.GetPropertyByPath("http://schema.org/director");
+			if(propSchema_director != null && propSchema_director.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_director.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Person schema_director = new Person(propValue.RelatedEntity,idiomaUsuario);
+						Schema_director.Add(schema_director);
+					}
+				}
+			}
+			Schema_actor = new List<Person>();
+			SemanticPropertyModel propSchema_actor = pSemCmsModel.GetPropertyByPath("http://schema.org/actor");
+			if(propSchema_actor != null && propSchema_actor.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_actor.PropertyValues)
+				{
+					if(propValue.RelatedEntity!=null){
+						Person schema_actor = new Person(propValue.RelatedEntity,idiomaUsuario);
+						Schema_actor.Add(schema_actor);
+					}
+				}
+			}
+			SemanticPropertyModel propSchema_url = pSemCmsModel.GetPropertyByPath("http://schema.org/url");
+			this.Schema_url = new List<string>();
+			if (propSchema_url != null && propSchema_url.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_url.PropertyValues)
+				{
+					this.Schema_url.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_aggregateRating = pSemCmsModel.GetPropertyByPath("http://schema.org/aggregateRating");
+			this.Schema_aggregateRating = new List<string>();
+			if (propSchema_aggregateRating != null && propSchema_aggregateRating.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_aggregateRating.PropertyValues)
+				{
+					this.Schema_aggregateRating.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_productionCompany = pSemCmsModel.GetPropertyByPath("http://schema.org/productionCompany");
+			this.Schema_productionCompany = new List<string>();
+			if (propSchema_productionCompany != null && propSchema_productionCompany.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_productionCompany.PropertyValues)
+				{
+					this.Schema_productionCompany.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_recordedAt = pSemCmsModel.GetPropertyByPath("http://schema.org/recordedAt");
+			this.Schema_recordedAt = new List<string>();
+			if (propSchema_recordedAt != null && propSchema_recordedAt.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_recordedAt.PropertyValues)
+				{
+					this.Schema_recordedAt.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_countryOfOrigin = pSemCmsModel.GetPropertyByPath("http://schema.org/countryOfOrigin");
+			this.Schema_countryOfOrigin = new List<string>();
+			if (propSchema_countryOfOrigin != null && propSchema_countryOfOrigin.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_countryOfOrigin.PropertyValues)
+				{
+					this.Schema_countryOfOrigin.Add(propValue.Value);
+				}
+			}
+			this.Schema_duration = new List<int>();
+			SemanticPropertyModel propSchema_duration = pSemCmsModel.GetPropertyByPath("http://schema.org/duration");
+			if (propSchema_duration != null && propSchema_duration.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_duration.PropertyValues)
+				{
+					this.Schema_duration.Add(GetNumberIntPropertyMultipleValueSemCms(propValue).Value);
+				}
+			}
+			SemanticPropertyModel propSchema_inLanguage = pSemCmsModel.GetPropertyByPath("http://schema.org/inLanguage");
+			this.Schema_inLanguage = new List<string>();
+			if (propSchema_inLanguage != null && propSchema_inLanguage.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_inLanguage.PropertyValues)
+				{
+					this.Schema_inLanguage.Add(propValue.Value);
+				}
+			}
+			SemanticPropertyModel propSchema_award = pSemCmsModel.GetPropertyByPath("http://schema.org/award");
+			this.Schema_award = new List<string>();
+			if (propSchema_award != null && propSchema_award.PropertyValues.Count > 0)
+			{
+				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_award.PropertyValues)
+				{
+					this.Schema_award.Add(propValue.Value);
+				}
+			}
+			this.Schema_description = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/description"));
+			this.Schema_image = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/image"));
+			this.Schema_name = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/name"));
+var item1 = GetDateValuePropertySemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/datePublished"));
+if(item1.HasValue){
+			this.Schema_datePublished = item1.Value;
+}
+			this.Schema_contentRating = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/contentRating"));
+		}
 
 		public virtual string RdfType { get { return "http://schema.org/Movie"; } }
 		public virtual string RdfsLabel { get { return "http://schema.org/Movie"; } }
@@ -116,7 +408,10 @@ namespace PeliculademoOntology
 			propList.Add(new ListStringOntologyProperty("schema:recordedAt", this.Schema_recordedAt));
 			propList.Add(new ListStringOntologyProperty("schema:countryOfOrigin", this.Schema_countryOfOrigin));
 			List<string> Schema_durationString = new List<string>();
-			Schema_durationString.AddRange(Array.ConvertAll(this.Schema_duration.ToArray() , element => element.ToString()));
+			if (this.Schema_duration != null)
+			{
+				Schema_durationString.AddRange(Array.ConvertAll(this.Schema_duration.ToArray() , element => element.ToString()));
+			}
 			propList.Add(new ListStringOntologyProperty("schema:duration", Schema_durationString));
 			propList.Add(new ListStringOntologyProperty("schema:inLanguage", this.Schema_inLanguage));
 			propList.Add(new ListStringOntologyProperty("schema:award", this.Schema_award));
@@ -136,7 +431,7 @@ namespace PeliculademoOntology
 					prop.GetEntities();
 					OntologyEntity entityRating = new OntologyEntity("http://schema.org/Rating", "http://schema.org/Rating", "schema:rating", prop.propList, prop.entList);
 				entList.Add(entityRating);
-				prop.Entity= entityRating;
+				prop.Entity = entityRating;
 				}
 			}
 		} 
@@ -145,10 +440,15 @@ namespace PeliculademoOntology
 			return ToGnossApiResource(resourceAPI, listaDeCategorias, Guid.Empty, Guid.Empty);
 		}
 
-		public virtual ComplexOntologyResource ToGnossApiResource(ResourceApi resourceAPI, List<string> listaDeCategorias, Guid idrecurso, Guid idarticulo)
+		public virtual ComplexOntologyResource ToGnossApiResource(ResourceApi resourceAPI, List<Guid> listaDeCategorias)
+		{
+			return ToGnossApiResource(resourceAPI, null, Guid.Empty, Guid.Empty, listaDeCategorias);
+		}
+
+		public virtual ComplexOntologyResource ToGnossApiResource(ResourceApi resourceAPI, List<string> listaDeCategorias, Guid idrecurso, Guid idarticulo, List<Guid> listaIdDeCategorias = null)
 		{
 			ComplexOntologyResource resource = new ComplexOntologyResource();
-			Ontology ontology=null;
+			Ontology ontology = null;
 			GetEntities();
 			GetProperties();
 			if(idrecurso.Equals(Guid.Empty) && idarticulo.Equals(Guid.Empty))
@@ -160,7 +460,8 @@ namespace PeliculademoOntology
 			}
 			resource.Id = GNOSSID;
 			resource.Ontology = ontology;
-			resource.TextCategories=listaDeCategorias;
+			resource.TextCategories = listaDeCategorias;
+			resource.CategoriesIds = listaIdDeCategorias;
 			AddResourceTitle(resource);
 			AddResourceDescription(resource);
 			AddImages(resource);
@@ -304,7 +605,7 @@ namespace PeliculademoOntology
 			List<string> list = new List<string>();
 			List<string> listaSearch = new List<string>();
 			AgregarTags(list);
-			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", $"\"peliculademo\"", list, " . ");
+			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://www.w3.org/1999/02/22-rdf-syntax-ns#type", $"\"peliculacrudapi\"", list, " . ");
 			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://gnoss/type", $"\"http://schema.org/Movie\"", list, " . ");
 			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://gnoss/hasfechapublicacion", $"{DateTime.Now.ToString("yyyyMMddHHmmss")}", list, " . ");
 			AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://gnoss/hastipodoc", "\"5\"", list, " . ");
@@ -318,6 +619,7 @@ namespace PeliculademoOntology
 			{
 			foreach(var item0 in this.Schema_rating)
 			{
+				AgregarTripleALista($"http://gnossAuxiliar/{ResourceID.ToString().ToUpper()}", "http://gnoss/hasEntidadAuxiliar", $"<{resourceAPI.GraphsUrl}items/Rating_{ResourceID}_{item0.ArticleID}>", list, " . ");
 				AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://schema.org/rating", $"<{resourceAPI.GraphsUrl}items/Rating_{ResourceID}_{item0.ArticleID}>", list, " . ");
 				if(item0.Schema_ratingSource != null)
 				{
@@ -510,7 +812,7 @@ namespace PeliculademoOntology
 
 		public override string GetURI(ResourceApi resourceAPI)
 		{
-			return $"{resourceAPI.GraphsUrl}items/PeliculademoOntology_{ResourceID}_{ArticleID}";
+			return $"{resourceAPI.GraphsUrl}items/PeliculacrudapiOntology_{ResourceID}_{ArticleID}";
 		}
 
 

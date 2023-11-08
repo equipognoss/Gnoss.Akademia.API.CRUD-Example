@@ -5,10 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using Gnoss.ApiWrapper;
 using Gnoss.ApiWrapper.Model;
+using Es.Riam.Gnoss.Web.MVC.Models;
 using Gnoss.ApiWrapper.Interfaces;
 using System.Diagnostics.CodeAnalysis;
 using System.Reflection;
 using System.Collections;
+using System.Globalization;
 
 namespace GnossBase
 {
@@ -72,10 +74,8 @@ namespace GnossBase
 			prefList.Add("xmlns:xsd=\"http://www.w3.org/2001/XMLSchema#\"");
 			prefList.Add("xmlns:rdfs=\"http://www.w3.org/2000/01/rdf-schema#\"");
 			prefList.Add("xmlns:owl=\"http://www.w3.org/2002/07/owl#\"");
-			prefList.Add("xmlns:cidoc=\"http://www.cidoc-crm.org/cidoc-crm#\"");
-			prefList.Add("xmlns:ecidoc=\"http://museodelprado.es/ontologia/ecidoc.owl#\"");
-			prefList.Add("xmlns:pm=\"http://museodelprado.es/ontologia/pradomuseum.owl#\"");
-			prefList.Add("xmlns:efrbrer=\"http://museodelprado.es/ontologia/efrbrer.owl#\"");
+			prefList.Add("xmlns:skos2=\"http://www.w3.org/2008/05/skos#\"");
+			prefList.Add("xmlns:dc=\"http://purl.org/dc/elements/1.1/\"");
 
 			this.resourceID = Guid.NewGuid();
 			this.articleID = Guid.NewGuid();
@@ -141,6 +141,106 @@ namespace GnossBase
 			}
 		}
 
+		public static string GetPropertyValueSemCms(SemanticPropertyModel pProperty)
+		{
+			if (pProperty != null && pProperty.PropertyValues.Count > 0)
+			{
+				return pProperty.PropertyValues[0].Value;
+			}
+			return "";
+		}
+
+		public static int? GetNumberIntPropertyValueSemCms(SemanticPropertyModel pProperty)
+		{
+			if(pProperty != null && pProperty.PropertyValues.Count > 0 && !string.IsNullOrEmpty(pProperty.PropertyValues[0].Value))
+			{
+				return int.Parse(pProperty.PropertyValues[0].Value);
+			}
+			return 0;
+		}
+
+		public static int? GetNumberIntPropertyMultipleValueSemCms(SemanticPropertyModel.PropertyValue pProperty)
+		{
+			if(pProperty != null && !string.IsNullOrEmpty(pProperty.Value))
+			{
+				return int.Parse(pProperty.Value);
+			}
+			return 0;
+		}
+
+		public static float? GetNumberFloatPropertyValueSemCms(SemanticPropertyModel pProperty)
+		{
+			if(pProperty != null && pProperty.PropertyValues.Count > 0 && !string.IsNullOrEmpty(pProperty.PropertyValues[0].Value))
+			{
+				return float.Parse(pProperty.PropertyValues[0].Value, new CultureInfo("en-US"));
+			}
+			return 0;
+		}
+
+		public static float? GetNumberFloatPropertyValueSemCms(string pProperty)
+		{
+			if(!string.IsNullOrEmpty(pProperty))
+			{
+				return float.Parse(pProperty, new CultureInfo("en-US"));
+			}
+			return 0;
+		}
+
+		public static DateTime? GetDateValuePropertySemCms(SemanticPropertyModel pProperty)
+		{
+		string stringDate = GetPropertyValueSemCms(pProperty);
+		if (!string.IsNullOrEmpty(stringDate))
+		{
+		int year = 0;
+		int month = 0;
+		int day = 0;
+		if (stringDate.Contains('/'))
+		{
+		day = int.Parse(stringDate.Split('/')[0]);
+		month = int.Parse(stringDate.Split('/')[1]);
+		year = int.Parse(stringDate.Split('/')[2].Split(' ')[0]);
+		}
+		else
+		{
+		year = int.Parse(stringDate.Substring(0, 4));
+		month = int.Parse(stringDate.Substring(4, 2));
+		day = int.Parse(stringDate.Substring(6, 2));
+		}
+		if (stringDate.Length == 14)
+		{
+		if (month == 0 || day == 0)
+		{
+		return new DateTime(year);
+		}
+		else
+		{
+		int hour = int.Parse(stringDate.Substring(8, 2));
+		int minute = int.Parse(stringDate.Substring(10, 2));
+		int second = int.Parse(stringDate.Substring(12, 2));
+		return new DateTime(year, month, day, hour, minute, second);
+		}
+		}
+		else
+		{
+		return new DateTime(year, month, day);
+		}
+		}
+		return null;
+		}
+
+		public static bool GetBooleanPropertyValueSemCms(SemanticPropertyModel pProperty)
+		{
+			bool resultado = false;
+			if(pProperty != null && pProperty.PropertyValues.Count > 0 && !string.IsNullOrEmpty(pProperty.PropertyValues[0].Value))
+			{
+				if (!bool.TryParse(pProperty.PropertyValues[0].Value, out resultado))
+				{
+					resultado = !NoEnIdiomas.Contains(pProperty.PropertyValues[0].Value);
+				}
+			}
+			return resultado;
+		}
+
 		internal virtual void GetProperties()
 		{
 		}
@@ -167,7 +267,11 @@ namespace GnossBase
 
 		internal string GetExtension(string file)
 		{
-			return file.Substring(file.LastIndexOf('.'));
+			if(!string.IsNullOrEmpty(file))
+			{
+				return file.Substring(file.LastIndexOf('.'));
+			}
+			return string.Empty;
 		}
 
 

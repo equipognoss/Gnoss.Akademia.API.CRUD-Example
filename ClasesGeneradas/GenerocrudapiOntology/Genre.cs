@@ -9,13 +9,14 @@ using Gnoss.ApiWrapper;
 using Gnoss.ApiWrapper.Model;
 using Gnoss.ApiWrapper.Helpers;
 using GnossBase;
+using Es.Riam.Gnoss.Web.MVC.Models;
 using System.Text.RegularExpressions;
 using System.Globalization;
 using System.Collections;
 using Gnoss.ApiWrapper.Exceptions;
 using System.Diagnostics.CodeAnalysis;
 
-namespace GenerodemoOntology
+namespace GenerocrudapiOntology
 {
 	[ExcludeFromCodeCoverage]
 	public class Genre : GnossOCBase
@@ -23,6 +24,13 @@ namespace GenerodemoOntology
 		public Genre(string pIdentificador) : base()
 		{
 			Identificador = pIdentificador;
+		}
+
+		public Genre(SemanticEntityModel pSemCmsModel, LanguageEnum idiomaUsuario) : base()
+		{
+			mGNOSSID = pSemCmsModel.Entity.Uri;
+			mURL = pSemCmsModel.Properties.FirstOrDefault(p => p.PropertyValues.Any(prop => prop.DownloadUrl != null))?.FirstPropertyValue.DownloadUrl;
+			this.Schema_name = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/name"));
 		}
 
 		public virtual string RdfType { get { return "http://schema.org/Genre"; } }
@@ -87,7 +95,7 @@ namespace GenerodemoOntology
 
 		public override string GetURI(ResourceApi resourceAPI)
 		{
-			return $"{resourceAPI.GraphsUrl}items/GenerodemoOntology_{ResourceID}_{ArticleID}";
+			return $"{resourceAPI.GraphsUrl}items/GenerocrudapiOntology_{ResourceID}_{ArticleID}";
 		}
 
 
