@@ -14,12 +14,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="GnossApiWrapper.NetCore" Version="6.0.43" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="ClasesGeneradas\akp1.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <None Update="Config\oAuth_akp1.config">
-      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Documents\ESTRUCTURA_CATEGORIAS_COMPLETO - Copia.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Documents\ESTRUCTURA_CATEGORIAS_COMPLETO.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Documents\ESTRUCTURA_CATEGORIAS_COMPLETO_MOD - Copia.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Documents\ESTRUCTURA_CATEGORIAS_COMPLETO_MOD_SIN.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>
 

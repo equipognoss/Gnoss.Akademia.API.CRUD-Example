@@ -4,33 +4,94 @@ using Gnoss.ApiWrapper;
 using Gnoss.ApiWrapper.ApiModel;
 using Gnoss.ApiWrapper.Model;
 using PersonademoOntology;
+using PeliculademoOntology;
 using System;
 using System.Security.Cryptography;
+using System.Xml;
+using System.Text;
 
-//CONEXIÓN CON LA COMUNIDAD
-ResourceApi mResourceApi = new ResourceApi(Path.Combine(System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase, @"Config\oAuth_akp1.config"));
-mResourceApi.ChangeOntoly("personademo.owl");
 
-//CARGA DE PERSONA
+#region Conexión y datos de la comunidad
+
+string pathOAuth = @"Config\oAuth_akp1.config";
+
+ResourceApi mResourceApi = new ResourceApi(Path.Combine(System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
+CommunityApi mCommunityApi = new CommunityApi(Path.Combine(System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
+ThesaurusApi mThesaurusApi = new ThesaurusApi(Path.Combine(System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
+
+Console.WriteLine(mCommunityApi.GetCommunityInfo().name);
+Console.WriteLine(mCommunityApi.GetCommunityInfo().short_name);
+
+Console.WriteLine("USUARIOS");
+foreach (var usuario in mCommunityApi.GetCommunityInfo().users)
 {
-    Person personActor1 = new Person();
+	Console.WriteLine(usuario.ToString());
+}
+Console.WriteLine("---FIN USUARIOS--");
+
+Console.WriteLine(mCommunityApi.GetCommunityInfo().description);
+
+#endregion Conexión con la comunidad
+
+#region Carga del tesauro principal de una comunidad desde Archivo XML
+
+mCommunityApi.Log.Debug("Inicio de la Carga del tesauro de la comunidad");
+mCommunityApi.Log.Debug("**************************************");
+
+BorrarCategoriasDeRecursos();  //Si hay recursos categorizados no se puede actualizar el TESAURO
+
+// Lee del XML la estrucutra del tesauro (categorías) a cargar en la comunidad
+
+XmlDocument xmlCategorias = new XmlDocument();
+xmlCategorias.Load($"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}Documents\\ESTRUCTURA_CATEGORIAS_COMPLETO_MOD_SIN.xml");
+mCommunityApi.CreateThesaurus(xmlCategorias.OuterXml);
+
+//Obtener el tesauro de una comunidad (XML)
+string xml = mCommunityApi.GetThesaurus();
+Console.WriteLine(xml);
+
+mCommunityApi.Log.Debug("**************************************");
+mCommunityApi.Log.Debug("Fin de la Carga del tesauro de comunidad (categorías) de 'Telos'");
+
+#endregion Carga de personas (PRINCIPAL)
+
+#region Carga de géneros (SECUNDARIA)
+string identificador = Guid.NewGuid().ToString();
+Genre genero = new(identificador);
+genero.Schema_name = "NombreGeneroPruebaAhora";
+mResourceApi.ChangeOntoly("generoakademia.owl");
+SecondaryResource generoSR = genero.ToGnossApiResource(mResourceApi, identificador);
+mResourceApi.LoadSecondaryResource(generoSR);
+
+if (!generoSR.Uploaded)
+{
+	mResourceApi.Log.Error($"Error en la carga del Género con identificador {identificador} -> Nombre: {genero.Schema_name}");
+}
+
+#endregion Carga de géneros (SECUNDARIA)
+
+#region Carga de personas (PRINCIPAL)
+
+{
+	Person personActor1 = new Person();
     personActor1.Schema_name = "Actor1";
     /*
-    Guid guid1 = new Guid("");
-    Guid guid2 = new Guid("");
-
-    ComplexOntologyResource resorceLoad = personActor1.ToGnossApiResource(mResourceApi, null, guid1, guid2);
+        Guid guid1 = new Guid("");
+        Guid guid2 = new Guid("");
+        ComplexOntologyResource resorceLoad = personActor1.ToGnossApiResource(mResourceApi, null, guid1, guid2);
     */
     ComplexOntologyResource resorceLoad = personActor1.ToGnossApiResource(mResourceApi, null);
-
     mResourceApi.LoadComplexSemanticResource(resorceLoad);
 }
 
-//MODIFICACIÓN DE LOS DATOS DE LA PERSONA CARGADA
+#endregion Carga de personas (PRINCIPAL)
+
+#region Modificación de personas (PRINCIPAL)
+
 string uri = "";
 {
     //Obtención del id de la persona cargada en la comunidad
-    string pOntology = "personademo";
+    string pOntology = "personaakademia";
     string select = string.Empty, where = string.Empty;
     select += $@"SELECT DISTINCT ?s";
     where += $@" WHERE {{ ";
@@ -47,7 +108,7 @@ string uri = "";
         }
     }
 
-    //Obtención de los dos Ids a través de la URI
+    //Obtención de los dos IDs a través de la URI
     string[] partes = uri.Split('/', '_');
 
     string resourceId = partes[5];
@@ -58,25 +119,32 @@ string uri = "";
 
     mResourceApi.ModifyComplexOntologyResource(personaActor1Modificado.ToGnossApiResource(mResourceApi, null, new Guid(resourceId), new Guid(articleID)), false, true);
 }
+#endregion Modificación de personas (PRINCIPAL)
 
-//BORRADO DE LOS DATOS DE LA PERSONA CARGADA
+#region Borrado de personas (PRINCIPAL)
+
 {
-    mResourceApi.PersistentDelete(mResourceApi.GetShortGuid(uri), true, true);
+	mResourceApi.PersistentDelete(mResourceApi.GetShortGuid(uri), true, true);
 }
 
-//CARGA DE PERSONA
+#endregion Borrado de personas (PRINCIPAL)
+
+#region Carga de personas (PRINCIPAL)
+
 {
-    Person personActor2 = new Person();
+	Person personActor2 = new Person();
     personActor2.Schema_name = "Actor2";
 
     ComplexOntologyResource resorceLoad = personActor2.ToGnossApiResource(mResourceApi, null);
     mResourceApi.LoadComplexSemanticResource(resorceLoad);
 }
 
+#endregion Carga de personas (PRINCIPAL)
 
-//Obtención del id de la persona cargada en la comunidad
+#region Obtención del id de la persona cargada en la comunidad
+
 {
-    string pOntology = "personademo";
+	string pOntology = "personaakademia";
     string select = string.Empty, where = string.Empty;
     select += $@"SELECT DISTINCT ?s";
     where += $@" WHERE {{ ";
@@ -94,28 +162,33 @@ string uri = "";
     }
 }
 
+#endregion Obtención del id de la persona cargada en la comunidad
+
+#region Carga de película con actor
+
 PeliculademoOntology.Movie pelicula = new PeliculademoOntology.Movie();
 pelicula.Schema_image = "https://walpaper.es/wallpaper/2015/11/wallpaper-gratis-de-un-espectacular-paisaje-en-color-azul-en-hd.jpg";
 pelicula.Schema_name = "PruebaConImagen";
 pelicula.Schema_description = "PruebaConImagen";
 pelicula.Schema_duration = new List<int>() { 6 };
 pelicula.IdsSchema_actor = new List<String>() { uri };
-mResourceApi.ChangeOntoly("peliculademo.owl");
+mResourceApi.ChangeOntoly("peliculaakademia.owl");
 ComplexOntologyResource resorceToLoad = pelicula.ToGnossApiResource(mResourceApi, null);
-
 string idPeliculaCargada = mResourceApi.LoadComplexSemanticResource(resorceToLoad);
 
-// MODIFICAR PROPIEDAD A RECURSO YA CARGADO
+#endregion Carga de película con actor
+
+#region Modificar triples
+
 {
+	#region Predicados
 
-    #region Predicados
-
-    string predicadoSechemaName = "http://schema.org/name";
+	string predicadoSechemaName = "http://schema.org/name";
 
     #endregion
 
     string nombreActual = string.Empty;
-    string pOntology = "personademo";
+    string pOntology = "personaakademia";
     string select = string.Empty, where = string.Empty;
     select += "SELECT ?name ";
     where += "WHERE { ";
@@ -129,6 +202,7 @@ string idPeliculaCargada = mResourceApi.LoadComplexSemanticResource(resorceToLoa
         foreach (var item in resultadoQuery.results.bindings)
         {
             nombreActual = item["name"].value;
+            break;
         }
 
         List<TriplesToModify> listaTriplesModificar = new List<TriplesToModify>();
@@ -166,9 +240,12 @@ string idPeliculaCargada = mResourceApi.LoadComplexSemanticResource(resorceToLoa
     }
 }
 
-// AÑADIR AUXILIAR A ENTIDAD YA CARGADA
+#endregion Modificar triples
+
+#region Añadir triples
+
 {
-    Guid idCortoPelicula = mResourceApi.GetShortGuid(idPeliculaCargada);
+	Guid idCortoPelicula = mResourceApi.GetShortGuid(idPeliculaCargada);
     Guid entidadGuid = Guid.NewGuid();
 
     // Para indicar que es un auxiliar de la entidad principal se tienen que separar sus valores por tuberías '|'
@@ -197,10 +274,8 @@ string idPeliculaCargada = mResourceApi.LoadComplexSemanticResource(resorceToLoa
         NewValue = valorBase + "8"
     });
 
-
     Dictionary<Guid, List<TriplesToInclude>> diccIncluirTriples = new Dictionary<Guid, List<TriplesToInclude>>();
     diccIncluirTriples.Add(idCortoPelicula, listaTriplesIncluir);
-
 
     Dictionary<Guid, bool> dicInsertado = mResourceApi.InsertPropertiesLoadedResources(diccIncluirTriples);
 
@@ -215,5 +290,124 @@ string idPeliculaCargada = mResourceApi.LoadComplexSemanticResource(resorceToLoa
     }
 }
 
-//Método OpenSeaDragon
-//ImagenesOpenSea imagenesOpenSea = new(mResourceApi);
+#endregion Añadir triples
+
+
+#region Limpiar las películas de categorías para poder cargar/actualizar el Tesauro de la comunidad
+//Método que desetiqueta las películas para poder modificar el TESAURO
+void BorrarCategoriasDeRecursos()
+{
+    string idGrafoBusqueda = "6bea832f-12f3-4276-b39e-af3ed333baee";
+	// Consulta
+	string select = "SELECT DISTINCT ?s ";
+	StringBuilder where = new StringBuilder();
+	where.AppendLine("WHERE { ");
+	where.AppendLine("?s ?p 'peliculaakademia'.");
+	where.AppendLine("?s <http://www.w3.org/2004/02/skos/core#ConceptID> ?categoria.");
+	where.AppendLine("} ");
+
+	SparqlObject resultado = mResourceApi.VirtuosoQuery(select, where.ToString(), idGrafoBusqueda);
+
+	if (resultado?.results?.bindings?.Count > 0)
+	{
+		foreach (Dictionary<string, SparqlObject.Data> fila in resultado.results.bindings)
+		{
+			mResourceApi.ModifyCategoriasRecursoInt(mResourceApi.GetShortGuid(fila["s"].value), new List<Guid>() { }, mCommunityApi.GetCommunityInfo().short_name);         
+			var categorias = mResourceApi.GetCategories(new List<Guid>() { mResourceApi.GetShortGuid(fila["s"].value) });
+		}
+	}
+}
+#endregion
+
+
+/*
+ CARGA DE UN TESAURO SEMÁNTICO (OC SECUNDARIO)
+ 
+  internal class FestivalesRepositorio
+  {
+        ResourceApi mResourceApi;
+        ThesaurusApi mThesaurusApi;
+        string CommunityShortName;
+        readonly string SOURCE = "festival";
+        readonly string ONTOLOGY = "gftaxonomy";
+        
+        readonly string SCOPENOTE_ES = "festival";
+
+        public FestivalesRepositorio() {        
+            mResourceApi = GestionDeProcesos.GetResourceApi();
+            CommunityShortName = mResourceApi.CommunityShortName;
+            mThesaurusApi = GestionDeProcesos.GetThesaurusApi();
+        }
+
+        public void CrearTesauroFestivalesCategorias(Dictionary<string, List<PremioWiki>> d_premiosWiki) {
+            Thesaurus tesauro = new Thesaurus();
+            tesauro.Source = SOURCE;
+            tesauro.Ontology = ONTOLOGY;
+            tesauro.CommunityShortName = CommunityShortName;
+            tesauro.Collection = new Collection();
+            tesauro.Collection.Member = new List<Concept>();
+            tesauro.Collection.ScopeNote = new Dictionary<string, string>() { { "es", SCOPENOTE_ES } };
+            tesauro.Collection.Subject = "http://testing.gnoss.com/items/festival";
+
+            if (d_premiosWiki is null)
+            {
+                Console.WriteLine($"Método: {System.Reflection.MethodBase.GetCurrentMethod()}. no es capaz de obtener festivales y categorías");
+                return;
+            }
+
+            foreach (KeyValuePair<string, List<PremioWiki>> festivalPremios in d_premiosWiki)
+            {
+                Concept festivalConcept = new Concept();
+                festivalConcept.Narrower = new List<Concept>();
+
+                foreach (PremioWiki premioWiki in festivalPremios.Value)
+                {
+                    Concept categoriaConcept = new Concept();
+                    string idWikidataCategoria = premioWiki.uriCategoria.Split("/")[premioWiki.uriCategoria.Split("/").Length - 1].ToLower();
+                    string labelCategoría = RemoverCaracteresExtraños(premioWiki.uriPremioLabel);
+                    categoriaConcept.PrefLabel = new Dictionary<string, string>() { { "es", premioWiki.uriPremioLabel } };
+                    categoriaConcept.Symbol = "2";
+                    categoriaConcept.Identifier = $"festival_categoria-{idWikidataCategoria}-{labelCategoría}";
+                    categoriaConcept.Subject = $"festival_categoria-{idWikidataCategoria}-{labelCategoría}";
+                    festivalConcept.Narrower.Add(categoriaConcept);                    
+                }                
+                string idWikidataFestival = festivalPremios.Key.Split("/")[festivalPremios.Key.Split("/").Length - 1].ToLower();
+                string labelFestival = RemoverCaracteresExtraños(festivalPremios.Value.FirstOrDefault().uriFestivalLabel);
+                festivalConcept.PrefLabel = new Dictionary<string, string>() { { "es", festivalPremios.Value.FirstOrDefault().uriFestivalLabel } };
+                festivalConcept.Symbol = "1";
+                festivalConcept.Identifier = $"festival_festival-{idWikidataFestival}-{labelFestival}";
+                festivalConcept.Subject = $"festival_festival-{idWikidataFestival}-{labelFestival}";
+                tesauro.Collection.Member.Add(festivalConcept);
+            }
+            //mThesaurusApi.CreateThesaurus(tesauro);
+            mThesaurusApi.ModifyThesaurus(tesauro);
+        }
+
+        /// <summary>
+        /// Método que elimina el Tesauro empleando ThesaurusApi
+        /// </summary>
+        public void borrarTesauroEntero()
+        {
+            mThesaurusApi.DeleteThesaurus(SOURCE, ONTOLOGY);
+        }
+
+        /// <summary>
+        /// Método que limpia un string de caracteres extraños para incluirlo en una URL/URI
+        /// </summary>
+        /// <param name="texto"></param>
+        /// <returns></returns>
+        public static string RemoverCaracteresExtraños(string texto)
+        {
+            string textoNormalizado = texto.Normalize(NormalizationForm.FormD);
+            StringBuilder textoSinAcentos = new StringBuilder();
+
+            foreach (char c in textoNormalizado)
+            {
+                if (CharUnicodeInfo.GetUnicodeCategory(c) != UnicodeCategory.NonSpacingMark)
+                    textoSinAcentos.Append(c);
+            }
+
+            return textoSinAcentos.Replace(" ", "-").ToString().ToLower();
+        }
+    }
+ */
