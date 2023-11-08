@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Config\oAuth_akp1.config">
+    <None Update="Config\oAuth.config">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Documents\ESTRUCTURA_CATEGORIAS_COMPLETO - Copia.xml">

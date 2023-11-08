@@ -12,7 +12,7 @@ using PeliculacrudapiOntology;
 
 #region Conexión y datos de la comunidad
 
-string pathOAuth = @"Config\oAuth_akp1.config";
+string pathOAuth = @"Config\oAuth.config";
 
 ResourceApi mResourceApi = new ResourceApi(Path.Combine(System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
 CommunityApi mCommunityApi = new CommunityApi(Path.Combine(System.AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
