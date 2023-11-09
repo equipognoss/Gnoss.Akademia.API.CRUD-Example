@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Thesaurus>
+  <Categories>
+    <Category>
+      <Name>Cine 1</Name>
+      <Category>
+        <Name>Cine 1.1</Name>
+        <Category>
+          <Name>Cine 1.1.1</Name>
+        </Category>
+      </Category>
+    </Category>
+  </Categories>
+</Thesaurus>

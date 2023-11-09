@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Thesaurus>
+  <Categories>
+    <Category>
+      <Name>Economía</Name>
+      <ID>ef565b29-b757-4785-b807-01cf486ee7e3</ID>
+      <Category>
+        <Name>I+D+I</Name>
+        <ID>26d75ef0-65a8-4760-ad02-0f7f3ca585ec</ID>
+        <Category>
+          <Name>Por definir 1</Name>
+          <ID>17efb031-d8d0-4df7-ab81-97b86ab8fc61</ID>
+        </Category>
+      </Category>
+    </Category>
+  </Categories>
+</Thesaurus>

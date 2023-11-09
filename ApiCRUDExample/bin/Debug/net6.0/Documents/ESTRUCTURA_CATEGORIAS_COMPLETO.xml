@@ -1,0 +1,361 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Thesaurus>
+  <Categories>
+    <Category>
+      <Name>Economía</Name>
+      <ID>ef565b29-b757-4785-b807-01cf486ee7e3</ID>
+      <Category>
+        <Name>I+D+I</Name>
+        <ID>26d75ef0-65a8-4760-ad02-0f7f3ca585ec</ID>
+        <Category>
+          <Name>Por definir 1</Name>
+          <ID>17efb031-d8d0-4df7-ab81-97b86ab8fc61</ID>
+        </Category>
+      </Category>
+      <Category>
+        <Name>Financiación</Name>
+        <ID>10c7149f-149b-494a-b6db-24cc6607505e</ID>
+      </Category>
+      <Category>
+        <Name>Política económica</Name>
+        <ID>0f0c2b48-8e3e-4663-88c2-73137ec71ba1</ID>
+      </Category>
+      <Category>
+        <Name>Indicadores económicos</Name>
+        <ID>7d39d7fe-a43c-4e67-b5dd-46c2e0c1b7ef</ID>
+      </Category>
+      <Category>
+        <Name>Fiscalidad</Name>
+        <ID>6eeeaaba-d52b-47a2-b1e0-4e119434a7e2</ID>
+      </Category>
+      <Category>
+        <Name>Gestión de la innovación</Name>
+        <ID>1ee7a3d9-c17b-4353-9cb0-ea3a21029a67</ID>
+      </Category>
+      <Category>
+        <Name>Administraciones territoriales</Name>
+        <ID>c0a56160-efcf-48c8-a58e-9438d18a4ac3</ID>
+        <Category>
+          <Name>Comunidades Autónomas</Name>
+          <ID>9390a883-01c2-4977-99e5-f9f4f7bc8a00</ID>
+        </Category>
+        <Category>
+          <Name>Administraciones locales</Name>
+          <ID>691c867d-0289-4b6a-8e74-79b87b583759</ID>
+        </Category>
+        <Category>
+          <Name>Por definir 2</Name>
+          <ID>fa03babe-9f72-4dd2-b048-c3b8cc4fd4c6</ID>
+        </Category>
+        <Category>
+          <Name>Por definir 3</Name>
+          <ID>8fc46ffd-ce62-4a87-bc29-53d74527b2ab</ID>
+        </Category>
+        <Category>
+          <Name>Por definir 4</Name>
+          <ID>a4eca498-9e94-4b30-8519-e9a943238d8e</ID>
+        </Category>
+      </Category>
+      <Category>
+        <Name>Economía intangible</Name>
+        <ID>1f1cd1bb-df19-4087-bee1-821c101e9d76</ID>
+      </Category>
+      <Category>
+        <Name>Economía digital</Name>
+        <ID>e2ba24ca-4711-49d2-b53b-3bb02b804107</ID>
+      </Category>
+      <Category>
+        <Name>Economía circular</Name>
+        <ID>75fbc606-77f4-4a9b-9aa3-069dd8fafb42</ID>
+      </Category>
+      <Category>
+        <Name>Innovación en el sector público</Name>
+        <ID>9c20331e-5a9d-4b28-a4ff-082e4777d23e</ID>
+      </Category>
+      <Category>
+        <Name>Futuro del empleo</Name>
+        <ID>57643c40-4bfc-4537-b336-2e76869e4350</ID>
+      </Category>
+      <Category>
+        <Name>Sectores de actividad</Name>
+        <ID>42bb12f9-07ae-42ce-a17c-7dc1c38d1f1a</ID>
+        <Category>
+          <Name>Transporte</Name>
+          <ID>f95a6993-5a60-4e5c-a94f-20f2bd854d52</ID>
+        </Category>
+        <Category>
+          <Name>Agricultura y pesca</Name>
+          <ID>ef7d2d31-142b-4317-a06e-f8c137babca5</ID>
+        </Category>
+        <Category>
+          <Name>Medio Ambiente</Name>
+          <ID>d1d7d47c-0b66-42ca-b477-b9f568ee8b64</ID>
+        </Category>
+        <Category>
+          <Name>Producción, tecnología, investigación</Name>
+          <ID>1278a336-e13d-452d-80c3-a6745bddaa9e</ID>
+        </Category>
+        <Category>
+          <Name>Energía</Name>
+          <ID>e49e2685-87a9-40d6-9cae-7d665dae9505</ID>
+        </Category>
+        <Category>
+          <Name>Industria</Name>
+          <ID>bc5b89e9-5df8-4754-a691-f7c0c754aa47</ID>
+        </Category>
+        <Category>
+          <Name>Servicios</Name>
+          <ID>2ff1416f-3a90-45ba-aa1c-5ef4b7e73ae2</ID>
+          <Category>
+            <Name>Turismo</Name>
+            <ID>9f587a5b-76d7-4e25-b602-8fea92c9718a</ID>
+          </Category>
+        </Category>
+      </Category>
+      <Category>
+        <Name>Trabajo y empleo</Name>
+        <ID>94a3e445-56ca-4366-9f7a-1ec4a755402a</ID>
+        <Category>
+          <Name>Condiciones y organización del trabajo</Name>
+          <ID>1f941bcd-e972-47f9-9283-0c4f45ba5910</ID>
+        </Category>
+        <Category>
+          <Name>Relaciones laborales y derecho laboral</Name>
+          <ID>9df4bf19-193c-4094-bce5-a9acd3e7333e</ID>
+        </Category>
+        <Category>
+          <Name>Sindicatos</Name>
+          <ID>f8d65869-560d-468c-ada9-40a99eceba1a</ID>
+        </Category>
+      </Category>
+    </Category>
+    <Category>
+      <Name>Educación</Name>
+      <ID>5c698438-0425-48b3-8144-9d2950d92ed7</ID>
+      <Category>
+        <Name>Enseñanza y formación</Name>
+        <ID>522d1f07-1a6b-4de4-afd9-716132efdd34</ID>
+      </Category>
+      <Category>
+        <Name>Diseño y planificación de la enseñanza</Name>
+        <ID>13fc0a70-c375-4a71-b3d0-8ff9f7992502</ID>
+      </Category>
+      <Category>
+        <Name>Profesionales de la educación</Name>
+        <ID>383ce2bb-4c8b-44d0-8e0d-23391edecb28</ID>
+        <Category>
+          <Name>Profesorado</Name>
+          <ID>1125c484-3489-4599-b71e-96c6551ae726</ID>
+        </Category>
+      </Category>
+      <Category>
+        <Name>Evaluación de la educación</Name>
+        <ID>56fd81a1-bc42-4071-b87b-17a1543db34e</ID>
+      </Category>
+      <Category>
+        <Name>Políticas educativas</Name>
+        <ID>5e5fa6a3-6a6d-4c48-9721-6e6bf87735f7</ID>
+      </Category>
+      <Category>
+        <Name>Prácticas y experiencias educativas</Name>
+        <ID>f0f9da5c-86e5-4c99-b268-f0e91dac3a8c</ID>
+      </Category>
+      <Category>
+        <Name>Centros educativos</Name>
+        <ID>30a157e1-0231-44bb-a9b3-595017c7b6e5</ID>
+      </Category>
+      <Category>
+        <Name>Educación y sociedad</Name>
+        <ID>7b6d630b-e783-4fd4-a64a-a978c86c0e0c</ID>
+      </Category>
+      <Category>
+        <Name>Gestión y administración de la educación</Name>
+        <ID>5b89a9da-4bd4-4b59-afeb-856c3cfecf59</ID>
+      </Category>
+      <Category>
+        <Name>Comunidades Autónomas</Name>
+        <ID>69b04a63-bd85-4439-a619-a399729dcc89</ID>
+      </Category>
+      <Category>
+        <Name>Indicadores educativos</Name>
+        <ID>39e129d5-fd5a-4d23-90af-1c7ff1b11aa9</ID>
+      </Category>
+      <Category>
+        <Name>Niveles educativos</Name>
+        <ID>ee625b8a-44a2-4ef9-9a91-4074e2098bcc</ID>
+        <Category>
+          <Name>Infantil</Name>
+          <ID>d628eb21-9a52-4eed-8728-ea1abfd2af79</ID>
+        </Category>
+        <Category>
+          <Name>Primaria</Name>
+          <ID>b5783bd3-25e6-4902-8385-7e9868fefc2b</ID>
+        </Category>
+        <Category>
+          <Name>Secundaria (ESO y Bachillerato)</Name>
+          <ID>9d4d5077-8111-4155-bb86-ac2a9fd99b58</ID>
+        </Category>
+        <Category>
+          <Name>FP (Básica, Grado Medio y Grado Superior)</Name>
+          <ID>825be952-eeab-486d-a2db-6799ce6bfed6</ID>
+        </Category>
+        <Category>
+          <Name>Universidades</Name>
+          <ID>a8bd3529-27de-4d5b-b790-deb1c5430a87</ID>
+        </Category>
+      </Category>
+      <Category>
+        <Name>Formación continua</Name>
+        <ID>5a4a5dcc-6065-44ba-a2a4-19c760240446</ID>
+      </Category>
+    </Category>
+    <Category>
+      <Name>Objetivos de Desarrollo Sostenible</Name>
+      <ID>e804b14b-3833-4c9a-bc36-546867dd9288</ID>
+      <Category>
+        <Name>Fin de la pobreza</Name>
+        <ID>807d38ef-59ce-4156-93e6-7d8172551ca7</ID>
+      </Category>
+      <Category>
+        <Name>Hambre cero</Name>
+        <ID>b731922e-8bf8-41f4-926a-20a94462a7bf</ID>
+      </Category>
+      <Category>
+        <Name>Salud y bienestar</Name>
+        <ID>149d7a22-9971-4f5d-b663-d609e9992ae9</ID>
+      </Category>
+      <Category>
+        <Name>Educación de calidad</Name>
+        <ID>596fbcaa-f474-401d-a032-a64790cb292b</ID>
+      </Category>
+      <Category>
+        <Name>Igualdad de género</Name>
+        <ID>7ceba6fd-c749-4937-a0f2-3c67bb66003e</ID>
+      </Category>
+      <Category>
+        <Name>Agua limpia y saneamiento</Name>
+        <ID>4ba99538-f297-411e-b883-18729a197efb</ID>
+      </Category>
+      <Category>
+        <Name>Energía asequible y no contaminante</Name>
+        <ID>b7999571-6ab0-48af-b83b-255dace4785a</ID>
+      </Category>
+      <Category>
+        <Name>Trabajo decente y crecimiento económico</Name>
+        <ID>c8f29ac5-0b04-43d6-be64-f4935132ace2</ID>
+      </Category>
+      <Category>
+        <Name>Industria, innovación e infraestructura</Name>
+        <ID>40c9da51-be72-4628-ba41-ec626fe945d8</ID>
+      </Category>
+      <Category>
+        <Name>Reducción de las desigualdades</Name>
+        <ID>f2d71b2a-f95e-42b4-aa06-f237e4f18250</ID>
+      </Category>
+      <Category>
+        <Name>Ciudades y comunidades sostenibles</Name>
+        <ID>0228de0f-62ce-4055-a1e9-abc7f89cce42</ID>
+      </Category>
+      <Category>
+        <Name>Producción y consumo responsables</Name>
+        <ID>bdf33f5f-6c2d-4ff1-a903-44f6ccc15971</ID>
+      </Category>
+      <Category>
+        <Name>Acción por el clima</Name>
+        <ID>ceed030c-1476-49a5-b583-01bec4f70a77</ID>
+      </Category>
+      <Category>
+        <Name>Vida submarina</Name>
+        <ID>74fc0ee4-8186-465e-9b53-54e7b6526c3e</ID>
+      </Category>
+      <Category>
+        <Name>Vida de ecosistemas terrestres</Name>
+        <ID>1ff8f9c3-0320-4a44-91a8-54be12be3a8d</ID>
+      </Category>
+      <Category>
+        <Name>Paz, justicia e instituciones sólidas</Name>
+        <ID>a56a0a9a-a3ca-4afd-b8f0-6216667d01c1</ID>
+      </Category>
+      <Category>
+        <Name>Alianzas para lograr los objetivos</Name>
+        <ID>dd8cdbca-280c-479a-9a2e-ef1be3a0386b</ID>
+      </Category>
+    </Category>
+    <Category>
+      <Name>Sobre Cotec</Name>
+      <ID>1ab31e44-d2a2-4e41-a345-8275173581cf</ID>
+      <Category>
+        <Name>La llave de Cotec</Name>
+        <ID>564f0bcd-329b-4f9c-bb7a-bec4adccb7d3</ID>
+      </Category>
+      <Category>
+        <Name>Los 100 de Cotec</Name>
+        <ID>ee00b5a4-8090-4a55-a399-4dee715a3c3b</ID>
+      </Category>
+      <Category>
+        <Name>Transparencia</Name>
+        <ID>80b186cb-36e4-4ed6-a5f7-c483add381b3</ID>
+      </Category>
+      <Category>
+        <Name>Convocatoria PIA</Name>
+        <ID>21ab0f22-d597-457b-9c72-3d27b6d4e120</ID>
+      </Category>
+      <Category>
+        <Name>Encuesta de Percepción Social de la Innovación</Name>
+        <ID>925a1690-058d-41a4-a783-311df6f60ebc</ID>
+      </Category>
+      <Category>
+        <Name>Actividades con miembros</Name>
+        <ID>9b147400-bbb6-44b1-a9e5-815a17a7403d</ID>
+        <Category>
+          <Name>Reuniones (de Patronato y de Miembros)</Name>
+          <ID>0589c565-0f7e-493c-bdb8-024810470f34</ID>
+        </Category>
+        <Category>
+          <Name>Comités (de Economía y de Educación)</Name>
+          <ID>cb4e68ee-584f-4fad-902c-cfd7538a5d45</ID>
+        </Category>
+        <Category>
+          <Name>Grupos de Trabajo</Name>
+          <ID>d037df1c-51f1-4067-86e7-9ec57b6ea2da</ID>
+        </Category>
+      </Category>
+      <Category>
+        <Name>Eventos singulares</Name>
+        <ID>a357e2f0-f8b3-4750-a426-9f627ca9eac3</ID>
+        <Category>
+          <Name>Presentación del Anuario de Informe Cotec</Name>
+          <ID>cd4c6a88-5d98-41ce-b977-876da8bb5dae</ID>
+        </Category>
+        <Category>
+          <Name>Los Imperdibles</Name>
+          <ID>20afc910-1a28-441f-9f11-40815dc5a19a</ID>
+        </Category>
+        <Category>
+          <Name>Cumbre de Cotec Europa</Name>
+          <ID>3ea05682-dd9f-4c2f-a86f-0903bf184dd9</ID>
+        </Category>
+      </Category>
+      <Category>
+        <Name>Relaciones Internacionales</Name>
+        <ID>56b98ad3-4d2b-41e2-80b1-44c5c9994ae2</ID>
+        <Category>
+          <Name>Cotec Europa</Name>
+          <ID>80a93271-13cc-4213-878f-e8288000e716</ID>
+        </Category>
+        <Category>
+          <Name>Latinoamérica</Name>
+          <ID>fa367abc-b286-4493-83ac-73afc002952b</ID>
+        </Category>
+        <Category>
+          <Name>Área Mediterránea</Name>
+          <ID>1d411bf3-7991-4a1b-a377-90336de348c4</ID>
+        </Category>
+      </Category>
+    </Category>
+    <Category>
+      <Name>Cotec</Name>
+      <ID>b073ea71-bb5d-49bf-81e5-5baaa9dcffc3</ID>
+    </Category>
+  </Categories>
+</Thesaurus>
