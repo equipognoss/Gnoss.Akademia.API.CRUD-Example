@@ -37,7 +37,7 @@ Console.WriteLine(mCommunityApi.GetCommunityInfo().description);
 mCommunityApi.Log.Debug("Inicio de la Carga del tesauro de la comunidad");
 mCommunityApi.Log.Debug("**************************************");
 
-BorrarCategoriasDeRecursos();  //Si hay recursos categorizados no se puede actualizar el TESAURO
+//BorrarCategoriasDeRecursos();  //Si hay recursos categorizados no se puede actualizar el TESAURO
 
 // Lee del XML la estrucutra del tesauro (categorías) a cargar en la comunidad
 
@@ -77,7 +77,7 @@ d_contiente_paises.Add("Europa", new List<string>(){
  Thesaurus tesauro = new Thesaurus();
  tesauro.Source = "place";
  tesauro.Ontology = "taxonomycrudapi";
- tesauro.CommunityShortName = "akfilmspractice";
+ tesauro.CommunityShortName = "apicrud-example";
  tesauro.Collection = new Collection();
  tesauro.Collection.Member = new List<Concept>();
  tesauro.Collection.ScopeNote = new Dictionary<string, string>() { { "es", "Lugares" } };
@@ -351,12 +351,12 @@ string idPeliculaCargada = mResourceApi.LoadComplexSemanticResource(resorceToLoa
 //Método que desetiqueta las películas para poder modificar el TESAURO
 void BorrarCategoriasDeRecursos()
 {
-    string idGrafoBusqueda = "6bea832f-12f3-4276-b39e-af3ed333baee";
+    string idGrafoBusqueda = "0f0fb89e-a2b9-4249-b70b-1bf5b92e65f0";
 	// Consulta
 	string select = "SELECT DISTINCT ?s ";
 	StringBuilder where = new StringBuilder();
 	where.AppendLine("WHERE { ");
-	where.AppendLine("?s ?p 'peliculaakademia'.");
+	where.AppendLine("?s ?p 'peliculacrudapi'.");
 	where.AppendLine("?s <http://www.w3.org/2004/02/skos/core#ConceptID> ?categoria.");
 	where.AppendLine("} ");
 

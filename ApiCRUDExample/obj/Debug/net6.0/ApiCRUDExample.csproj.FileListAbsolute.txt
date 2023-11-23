@@ -326,7 +326,6 @@ C:\Users\Sergio de Dios\Desktop\Concello\Gnoss.Akademia.API.CRUD-Example\Gnoss.A
 C:\Users\Sergio de Dios\Desktop\Concello\Gnoss.Akademia.API.CRUD-Example\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\obj\Debug\net6.0\ref\ApiCRUDExample.dll
 C:\Users\Sergio de Dios\Desktop\Concello\Gnoss.Akademia.API.CRUD-Example\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\CsvReader.dll
 C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\ApiCRUDExample.exe
-C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\Config\oAuth_akp1.config
 C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\ApiCRUDExample.deps.json
 C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\ApiCRUDExample.runtimeconfig.json
 C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\ApiCRUDExample.dll
@@ -416,3 +415,4 @@ C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss
 C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\Es.Riam.Semantica.dll
 C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\Es.Riam.Util.dll
 C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\apicrud-example.pdb
+C:\Users\Sergio de Dios\OneDrive - RIAM I+L LAB S.L\Documentos\Desarrollos\Gnoss.Akademia.API.CRUD-Example\ApiCRUDExample\bin\Debug\net6.0\Config\oAuth.config
