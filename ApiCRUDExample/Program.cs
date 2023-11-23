@@ -50,9 +50,65 @@ string xml = mCommunityApi.GetThesaurus();
 Console.WriteLine(xml);
 
 mCommunityApi.Log.Debug("**************************************");
-mCommunityApi.Log.Debug("Fin de la Carga del tesauro de comunidad (categorías) de 'Telos'");
+mCommunityApi.Log.Debug("Fin de la Carga del tesauro de comunidad (categorías)'");
 
-#endregion Carga de personas (PRINCIPAL)
+#endregion Carga del tesauro principal de una comunidad desde Archivo XML
+
+#region Carga de un tesauro semantico
+
+mCommunityApi.Log.Debug("Inicio de la Carga del tesauro semántico");
+mCommunityApi.Log.Debug("**************************************");
+
+Dictionary<string,List<string>> d_contiente_paises = new ();
+d_contiente_paises.Add("Africa", new List<string>(){
+    "Eritra", "Etiopía", "Somalia", "Yibuti", "Sudan", "Sudán del Sur", "Egipto", "Libia", 
+    "Argelia", "Túnez", "Marruecos", "Sahara Occidental", "Mauritania", "Malí", "Burkina Faso", 
+    "Níger", "Nigeria", "Chad", "República Centroafricana", "República del Congo", 
+    "República Democrática del Congo", "Ruanda", "Burundi", "Uganda", "Kenia", "Tanzania", 
+    "Angola", "Zambia", "Zimbabue", "Botsuana", "Namibia", "Sudáfrica", "Madagascar", "Mauricio", "Seychelles", "Comoras"
+});
+
+d_contiente_paises.Add("Europa", new List<string>(){
+    "España", "Francia", "Alemania", "Italia", "Portugal", "Reino Unido", "Irlanda", "Suecia", "Dinamarca", "Noruega", "Finlandia", "Islandia", "Bélgica", "Países Bajos", 
+    "Luxemburgo", "Suiza", "Austria", "Andorra", "Liechtenstein", "Mónaco", "San Marino", "Ciudad del Vaticano", "Malta", "Grecia", "Chipre", "Turquía","Bulgaria", "Rumania", "Hungría", "Polonia",
+    "República Checa", "Eslovaquia", "Eslovenia", "Croacia", "Bosnia y Herzegovina", "Serbia", "Montenegro", "Macedonia", "Albania"
+});
+
+ Thesaurus tesauro = new Thesaurus();
+ tesauro.Source = "place";
+ tesauro.Ontology = "taxonomycrudapi";
+ tesauro.CommunityShortName = "akfilmspractice";
+ tesauro.Collection = new Collection();
+ tesauro.Collection.Member = new List<Concept>();
+ tesauro.Collection.ScopeNote = new Dictionary<string, string>() { { "es", "Lugares" } };
+ tesauro.Collection.Subject = "http://testing.gnoss.com/items/place";
+
+foreach (var continenteTesauroElement in d_contiente_paises.Keys)
+{
+    string nombreContinenteParaURL = continenteTesauroElement.Replace(" ", "-").ToLower();
+    Concept continenteConcept = new Concept();
+    continenteConcept.PrefLabel = new Dictionary<string, string>() { { "es", continenteTesauroElement } };
+    continenteConcept.Symbol = "1";
+    continenteConcept.Identifier = $"place_continente-{nombreContinenteParaURL}-id";
+    continenteConcept.Subject = $"place_continente-{nombreContinenteParaURL}-sj";
+    continenteConcept.Narrower = new List<Concept>();
+    foreach (var paisTesauroElement in d_contiente_paises[continenteTesauroElement])
+    {
+        string nombrePaisParaURL = continenteTesauroElement.Replace(" ", "-").ToLower();
+        Concept paisConcept = new Concept();
+        paisConcept.PrefLabel = new Dictionary<string, string>() { { "es", paisTesauroElement } };
+        paisConcept.Symbol = "2";
+        paisConcept.Identifier = $"place_pais-{nombreContinenteParaURL}-{nombrePaisParaURL}-id";
+        paisConcept.Subject = $"place_pais-{nombreContinenteParaURL}-{nombrePaisParaURL}-sj";
+        continenteConcept.Narrower.Add(paisConcept);
+    }
+    tesauro.Collection.Member.Add(continenteConcept);
+}
+
+mThesaurusApi.CreateThesaurus(tesauro);
+
+#endregion Carga de un tesauro semantico
+
 
 #region Carga de géneros (SECUNDARIA)
 string identificador = Guid.NewGuid().ToString();
