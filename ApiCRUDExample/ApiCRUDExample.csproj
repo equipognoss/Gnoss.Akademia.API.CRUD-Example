@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="GnossApiWrapper.NetCore" Version="6.0.43" />
+    <PackageReference Include="GnossApiWrapper.NetCore" Version="6.0.44" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +35,9 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Update="Documents\ESTRUCTURA_CATEGORIAS_COMPLETO_MOD_SIN.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="Img\Di_Caprio.jpg">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
   </ItemGroup>

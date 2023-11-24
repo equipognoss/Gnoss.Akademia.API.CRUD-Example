@@ -1,12 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "rZRIQ3xxaZvoTUNyOrgEkCQ7wsnYliEWjv44AKDr+CxHKUoiCgfTsTZCHiv7TXPiR/WPegBP02lQ8FKK6NkPOw==",
+  "dgSpecHash": "ohWhx5j7C8GBLzLg3G3SaMZpAJqLHJsKub3ZfiGZQzmQxPzUOlFAVW9RZWfeaWNuNh3nIU/mEWQ1lutJGlhlxg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Sergio de Dios\\OneDrive - RIAM I+L LAB S.L\\Documentos\\Desarrollos\\Gnoss.Akademia.API.CRUD-Example\\ApiCRUDExample\\ApiCRUDExample.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Sergio de Dios\\.nuget\\packages\\enterpriselibrary.common.netcore\\6.3.0\\enterpriselibrary.common.netcore.6.3.0.nupkg.sha512",
     "C:\\Users\\Sergio de Dios\\.nuget\\packages\\enterpriselibrary.data.netcore\\6.3.2\\enterpriselibrary.data.netcore.6.3.2.nupkg.sha512",
-    "C:\\Users\\Sergio de Dios\\.nuget\\packages\\gnossapiwrapper.netcore\\6.0.43\\gnossapiwrapper.netcore.6.0.43.nupkg.sha512",
+    "C:\\Users\\Sergio de Dios\\.nuget\\packages\\gnossapiwrapper.netcore\\6.0.44\\gnossapiwrapper.netcore.6.0.44.nupkg.sha512",
     "C:\\Users\\Sergio de Dios\\.nuget\\packages\\lumenworkscsvreader2\\4.3.0\\lumenworkscsvreader2.4.3.0.nupkg.sha512",
     "C:\\Users\\Sergio de Dios\\.nuget\\packages\\microsoft.applicationinsights\\2.16.0\\microsoft.applicationinsights.2.16.0.nupkg.sha512",
     "C:\\Users\\Sergio de Dios\\.nuget\\packages\\microsoft.bcl.asyncinterfaces\\5.0.0\\microsoft.bcl.asyncinterfaces.5.0.0.nupkg.sha512",

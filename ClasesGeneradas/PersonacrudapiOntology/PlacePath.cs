@@ -46,7 +46,7 @@ namespace PersonacrudapiOntology
 		public virtual string RdfsLabel { get { return "http://try.gnoss.com/ontology#PlacePath"; } }
 		public OntologyEntity Entity { get; set; }
 
-		[LABEL(LanguageEnum.es,"http://try.gnoss.com/ontology#placeNode")]
+		[LABEL(LanguageEnum.es,"")]
 		[RDFProperty("http://try.gnoss.com/ontology#placeNode")]
 		public  List<Concept> Try_placeNode { get; set;}
 		public List<string> IdsTry_placeNode { get; set;}

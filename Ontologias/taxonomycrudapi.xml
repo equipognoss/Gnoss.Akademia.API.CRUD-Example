@@ -1,6 +1,6 @@
 <config>
     <ConfiguracionGeneral>
-        <namespace>gftaxonomy</namespace>
+        <namespace>taxonomycrudapi</namespace>
         <idiomasOnto>
             <idiomaOnto>es</idiomaOnto>
         </idiomasOnto>
@@ -16,7 +16,7 @@
 			<SeleccionEntidad>
 				<TipoSeleccion MultiIdioma="true">Autocompletar</TipoSeleccion>
 				<LinkARecurso IrAComunidad="true" PropiedadID="http://www.w3.org/2008/05/skos#prefLabel"></LinkARecurso>
-				<Grafo>gftaxonomy.owl</Grafo>
+				<Grafo>taxonomycrudapi.owl</Grafo>
 				<UrlTipoEntSolicitada>http://www.w3.org/2008/05/skos#Concept</UrlTipoEntSolicitada>
 				<PropsEntEdicion>
 					<NameProp>http://www.w3.org/2008/05/skos#prefLabel</NameProp>
@@ -42,7 +42,7 @@
 			<SeleccionEntidad>
 				<TipoSeleccion MultiIdioma="true">Autocompletar</TipoSeleccion>
 				<LinkARecurso IrAComunidad="true" PropiedadID="http://www.w3.org/2008/05/skos#prefLabel"></LinkARecurso>
-				<Grafo>gftaxonomy.owl</Grafo>
+				<Grafo>taxonomycrudapi.owl</Grafo>
 				<UrlTipoEntSolicitada>http://www.w3.org/2008/05/skos#Concept</UrlTipoEntSolicitada>
 				<PropsEntEdicion>
 					<NameProp>http://www.w3.org/2008/05/skos#prefLabel</NameProp>
@@ -60,7 +60,7 @@
 			<SeleccionEntidad>
 				<TipoSeleccion MultiIdioma="true">Autocompletar</TipoSeleccion>
 				<LinkARecurso IrAComunidad="true" PropiedadID="http://www.w3.org/2008/05/skos#prefLabel"></LinkARecurso>
-				<Grafo>gftaxonomy.owl</Grafo>
+				<Grafo>taxonomycrudapi.owl</Grafo>
 				<UrlTipoEntSolicitada>http://www.w3.org/2008/05/skos#Concept</UrlTipoEntSolicitada>
 				<PropsEntEdicion>
 					<NameProp>http://www.w3.org/2008/05/skos#prefLabel</NameProp>
@@ -78,7 +78,7 @@
 			<SeleccionEntidad>
 				<TipoSeleccion MultiIdioma="true">Autocompletar</TipoSeleccion>
 				<LinkARecurso IrAComunidad="true" PropiedadID="http://www.w3.org/2008/05/skos#prefLabel"></LinkARecurso>
-				<Grafo>gftaxonomy.owl</Grafo>
+				<Grafo>taxonomycrudapi.owl</Grafo>
 				<UrlTipoEntSolicitada>http://www.w3.org/2008/05/skos#Concept</UrlTipoEntSolicitada>
 				<PropsEntEdicion>
 					<NameProp>http://www.w3.org/2008/05/skos#prefLabel</NameProp>

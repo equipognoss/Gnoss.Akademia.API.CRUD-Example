@@ -4,7 +4,7 @@
   </PropertyGroup>
   <ItemGroup>
 	  <PackageReference Include="EnterpriseLibrary.Data.NetCore" Version="6.3.2" />
-	  <PackageReference Include="GnossApiWrapper.NetCore" Version="6.0.43" />
+	  <PackageReference Include="GnossApiWrapper.NetCore" Version="6.0.44" />
 	  <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
 	<Reference Include="Es.Riam.Gnoss.Web.MVC.Models, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>

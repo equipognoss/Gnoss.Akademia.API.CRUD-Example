@@ -15,6 +15,7 @@ using System.Globalization;
 using System.Collections;
 using Gnoss.ApiWrapper.Exceptions;
 using System.Diagnostics.CodeAnalysis;
+using Concept = TaxonomycrudapiOntology.Concept;
 
 namespace TaxonomycrudapiOntology
 {

@@ -8,7 +8,7 @@
     ".NETCoreApp,Version=v6.0": {
       "ApiCRUDExample/1.0.0": {
         "dependencies": {
-          "GnossApiWrapper.NetCore": "6.0.43",
+          "GnossApiWrapper.NetCore": "6.0.44",
           "apicrud-example": "1.0.0"
         },
         "runtime": {
@@ -44,7 +44,7 @@
           }
         }
       },
-      "GnossApiWrapper.NetCore/6.0.43": {
+      "GnossApiWrapper.NetCore/6.0.44": {
         "dependencies": {
           "LumenWorksCsvReader2": "4.3.0",
           "Microsoft.ApplicationInsights": "2.16.0",
@@ -1029,7 +1029,7 @@
       "apicrud-example/1.0.0": {
         "dependencies": {
           "EnterpriseLibrary.Data.NetCore": "6.3.2",
-          "GnossApiWrapper.NetCore": "6.0.43",
+          "GnossApiWrapper.NetCore": "6.0.44",
           "Newtonsoft.Json": "13.0.3"
         },
         "runtime": {
@@ -1082,12 +1082,12 @@
       "path": "enterpriselibrary.data.netcore/6.3.2",
       "hashPath": "enterpriselibrary.data.netcore.6.3.2.nupkg.sha512"
     },
-    "GnossApiWrapper.NetCore/6.0.43": {
+    "GnossApiWrapper.NetCore/6.0.44": {
       "type": "package",
       "serviceable": true,
-      "sha512": "sha512-vLKFQKd1C/Zdy7clEIDm/yWippAj8vgQxZIq40wVPQIy3TmO274/wFgzxeN/v/chSluGc4kxZ75dhMHskE0OXA==",
-      "path": "gnossapiwrapper.netcore/6.0.43",
-      "hashPath": "gnossapiwrapper.netcore.6.0.43.nupkg.sha512"
+      "sha512": "sha512-0Vsaxla+hWZolbQAvAJRZ/Ks0RQ8ilEj+PmVsVNkCKwhT9zGswYuubdn4XOQRRwnXvHmqTsgNw2bSj7+uVzuMg==",
+      "path": "gnossapiwrapper.netcore/6.0.44",
+      "hashPath": "gnossapiwrapper.netcore.6.0.44.nupkg.sha512"
     },
     "LumenWorksCsvReader2/4.3.0": {
       "type": "package",

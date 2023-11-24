@@ -41,7 +41,7 @@
           }
         }
       },
-      "GnossApiWrapper.NetCore/6.0.43": {
+      "GnossApiWrapper.NetCore/6.0.44": {
         "type": "package",
         "dependencies": {
           "LumenWorksCsvReader2": "4.3.0",
@@ -1736,7 +1736,7 @@
         "framework": ".NETCoreApp,Version=v6.0",
         "dependencies": {
           "EnterpriseLibrary.Data.NetCore": "6.3.2",
-          "GnossApiWrapper.NetCore": "6.0.43",
+          "GnossApiWrapper.NetCore": "6.0.44",
           "Newtonsoft.Json": "13.0.3"
         },
         "compile": {
@@ -1805,14 +1805,14 @@
         "tools/install.ps1"
       ]
     },
-    "GnossApiWrapper.NetCore/6.0.43": {
-      "sha512": "vLKFQKd1C/Zdy7clEIDm/yWippAj8vgQxZIq40wVPQIy3TmO274/wFgzxeN/v/chSluGc4kxZ75dhMHskE0OXA==",
+    "GnossApiWrapper.NetCore/6.0.44": {
+      "sha512": "0Vsaxla+hWZolbQAvAJRZ/Ks0RQ8ilEj+PmVsVNkCKwhT9zGswYuubdn4XOQRRwnXvHmqTsgNw2bSj7+uVzuMg==",
       "type": "package",
-      "path": "gnossapiwrapper.netcore/6.0.43",
+      "path": "gnossapiwrapper.netcore/6.0.44",
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
-        "gnossapiwrapper.netcore.6.0.43.nupkg.sha512",
+        "gnossapiwrapper.netcore.6.0.44.nupkg.sha512",
         "gnossapiwrapper.netcore.nuspec",
         "icon/gnoss_54x54.png",
         "lib/net6.0/Gnoss.ApiWrapper.XML",
@@ -5534,7 +5534,7 @@
   },
   "projectFileDependencyGroups": {
     "net6.0": [
-      "GnossApiWrapper.NetCore >= 6.0.43",
+      "GnossApiWrapper.NetCore >= 6.0.44",
       "apicrud-example >= 1.0.0"
     ]
   },
@@ -5583,7 +5583,7 @@
         "dependencies": {
           "GnossApiWrapper.NetCore": {
             "target": "Package",
-            "version": "[6.0.43, )"
+            "version": "[6.0.44, )"
           }
         },
         "imports": [

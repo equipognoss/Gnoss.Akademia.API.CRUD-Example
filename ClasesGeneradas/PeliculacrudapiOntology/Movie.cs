@@ -133,15 +133,7 @@ namespace PeliculacrudapiOntology
 					this.Schema_countryOfOrigin.Add(propValue.Value);
 				}
 			}
-			this.Schema_duration = new List<int>();
-			SemanticPropertyModel propSchema_duration = pSemCmsModel.GetPropertyByPath("http://schema.org/duration");
-			if (propSchema_duration != null && propSchema_duration.PropertyValues.Count > 0)
-			{
-				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_duration.PropertyValues)
-				{
-					this.Schema_duration.Add(GetNumberIntPropertyMultipleValueSemCms(propValue).Value);
-				}
-			}
+			this.Schema_duration = GetNumberIntPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/duration"));
 			SemanticPropertyModel propSchema_inLanguage = pSemCmsModel.GetPropertyByPath("http://schema.org/inLanguage");
 			this.Schema_inLanguage = new List<string>();
 			if (propSchema_inLanguage != null && propSchema_inLanguage.PropertyValues.Count > 0)
@@ -160,13 +152,14 @@ namespace PeliculacrudapiOntology
 					this.Schema_award.Add(propValue.Value);
 				}
 			}
+			this.Schema_primaryImageOfPage = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/primaryImageOfPage"));
 			this.Schema_description = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/description"));
 			this.Schema_image = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/image"));
-			this.Schema_name = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/name"));
 var item0 = GetDateValuePropertySemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/datePublished"));
 if(item0.HasValue){
 			this.Schema_datePublished = item0.Value;
 }
+			this.Schema_name = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/name"));
 			this.Schema_contentRating = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/contentRating"));
 		}
 
@@ -279,15 +272,7 @@ if(item0.HasValue){
 					this.Schema_countryOfOrigin.Add(propValue.Value);
 				}
 			}
-			this.Schema_duration = new List<int>();
-			SemanticPropertyModel propSchema_duration = pSemCmsModel.GetPropertyByPath("http://schema.org/duration");
-			if (propSchema_duration != null && propSchema_duration.PropertyValues.Count > 0)
-			{
-				foreach (SemanticPropertyModel.PropertyValue propValue in propSchema_duration.PropertyValues)
-				{
-					this.Schema_duration.Add(GetNumberIntPropertyMultipleValueSemCms(propValue).Value);
-				}
-			}
+			this.Schema_duration = GetNumberIntPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/duration"));
 			SemanticPropertyModel propSchema_inLanguage = pSemCmsModel.GetPropertyByPath("http://schema.org/inLanguage");
 			this.Schema_inLanguage = new List<string>();
 			if (propSchema_inLanguage != null && propSchema_inLanguage.PropertyValues.Count > 0)
@@ -306,13 +291,14 @@ if(item0.HasValue){
 					this.Schema_award.Add(propValue.Value);
 				}
 			}
+			this.Schema_primaryImageOfPage = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/primaryImageOfPage"));
 			this.Schema_description = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/description"));
 			this.Schema_image = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/image"));
-			this.Schema_name = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/name"));
 var item1 = GetDateValuePropertySemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/datePublished"));
 if(item1.HasValue){
 			this.Schema_datePublished = item1.Value;
 }
+			this.Schema_name = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/name"));
 			this.Schema_contentRating = GetPropertyValueSemCms(pSemCmsModel.GetPropertyByPath("http://schema.org/contentRating"));
 		}
 
@@ -364,7 +350,7 @@ if(item1.HasValue){
 
 		[LABEL(LanguageEnum.es,"Duración")]
 		[RDFProperty("http://schema.org/duration")]
-		public  List<int> Schema_duration { get; set;}
+		public  int? Schema_duration { get; set;}
 
 		[LABEL(LanguageEnum.es,"En idioma")]
 		[RDFProperty("http://schema.org/inLanguage")]
@@ -374,6 +360,10 @@ if(item1.HasValue){
 		[RDFProperty("http://schema.org/award")]
 		public  List<string> Schema_award { get; set;}
 
+		[LABEL(LanguageEnum.es,"Imagen (carga a servidor)")]
+		[RDFProperty("http://schema.org/primaryImageOfPage")]
+		public  string Schema_primaryImageOfPage { get; set;}
+
 		[LABEL(LanguageEnum.es,"Descripción")]
 		[RDFProperty("http://schema.org/description")]
 		public  string Schema_description { get; set;}
@@ -382,13 +372,13 @@ if(item1.HasValue){
 		[RDFProperty("http://schema.org/image")]
 		public  string Schema_image { get; set;}
 
-		[LABEL(LanguageEnum.es,"Nombre")]
-		[RDFProperty("http://schema.org/name")]
-		public  string Schema_name { get; set;}
-
 		[LABEL(LanguageEnum.es,"Fecha de publicación")]
 		[RDFProperty("http://schema.org/datePublished")]
 		public  DateTime Schema_datePublished { get; set;}
+
+		[LABEL(LanguageEnum.es,"Nombre")]
+		[RDFProperty("http://schema.org/name")]
+		public  string Schema_name { get; set;}
 
 		[LABEL(LanguageEnum.es,"Clasificación del contenido")]
 		[RDFProperty("http://schema.org/contentRating")]
@@ -407,18 +397,13 @@ if(item1.HasValue){
 			propList.Add(new ListStringOntologyProperty("schema:productionCompany", this.Schema_productionCompany));
 			propList.Add(new ListStringOntologyProperty("schema:recordedAt", this.Schema_recordedAt));
 			propList.Add(new ListStringOntologyProperty("schema:countryOfOrigin", this.Schema_countryOfOrigin));
-			List<string> Schema_durationString = new List<string>();
-			if (this.Schema_duration != null)
-			{
-				Schema_durationString.AddRange(Array.ConvertAll(this.Schema_duration.ToArray() , element => element.ToString()));
-			}
-			propList.Add(new ListStringOntologyProperty("schema:duration", Schema_durationString));
+			propList.Add(new StringOntologyProperty("schema:duration", this.Schema_duration.ToString()));
 			propList.Add(new ListStringOntologyProperty("schema:inLanguage", this.Schema_inLanguage));
 			propList.Add(new ListStringOntologyProperty("schema:award", this.Schema_award));
 			propList.Add(new StringOntologyProperty("schema:description", this.Schema_description));
 			propList.Add(new StringOntologyProperty("schema:image", this.Schema_image));
-			propList.Add(new StringOntologyProperty("schema:name", this.Schema_name));
 			propList.Add(new DateOntologyProperty("schema:datePublished", this.Schema_datePublished));
+			propList.Add(new StringOntologyProperty("schema:name", this.Schema_name));
 			propList.Add(new StringOntologyProperty("schema:contentRating", this.Schema_contentRating));
 		}
 
@@ -558,10 +543,7 @@ if(item1.HasValue){
 				}
 				if(this.Schema_duration != null)
 				{
-					foreach(var item2 in this.Schema_duration)
-					{
-						AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}", "http://schema.org/duration", $"{item2.ToString()}", list, " . ");
-					}
+					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}",  "http://schema.org/duration", $"{this.Schema_duration.Value.ToString()}", list, " . ");
 				}
 				if(this.Schema_inLanguage != null)
 				{
@@ -577,6 +559,10 @@ if(item1.HasValue){
 						AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}", "http://schema.org/award", $"\"{GenerarTextoSinSaltoDeLinea(item2)}\"", list, " . ");
 					}
 				}
+				if(this.Schema_primaryImageOfPage != null)
+				{
+					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}", "http://schema.org/primaryImageOfPage",  $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_primaryImageOfPage)}\"", list, " . ");
+				}
 				if(this.Schema_description != null)
 				{
 					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}",  "http://schema.org/description", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_description)}\"", list, " . ");
@@ -585,13 +571,13 @@ if(item1.HasValue){
 				{
 					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}",  "http://schema.org/image", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_image)}\"", list, " . ");
 				}
-				if(this.Schema_name != null)
-				{
-					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}",  "http://schema.org/name", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
-				}
 				if(this.Schema_datePublished != null)
 				{
 					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}",  "http://schema.org/datePublished", $"\"{this.Schema_datePublished.ToString("yyyyMMddHHmmss")}\"", list, " . ");
+				}
+				if(this.Schema_name != null)
+				{
+					AgregarTripleALista($"{resourceAPI.GraphsUrl}items/Movie_{ResourceID}_{ArticleID}",  "http://schema.org/name", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
 				}
 				if(this.Schema_contentRating != null)
 				{
@@ -736,10 +722,7 @@ if(item1.HasValue){
 				}
 				if(this.Schema_duration != null)
 				{
-					foreach(var item2 in this.Schema_duration)
-					{
-						AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://schema.org/duration", $"{item2.ToString()}", list, " . ");
-					}
+					AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}",  "http://schema.org/duration", $"{this.Schema_duration.Value.ToString()}", list, " . ");
 				}
 				if(this.Schema_inLanguage != null)
 				{
@@ -755,6 +738,10 @@ if(item1.HasValue){
 						AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://schema.org/award", $"\"{GenerarTextoSinSaltoDeLinea(item2)}\"", list, " . ");
 					}
 				}
+				if(this.Schema_primaryImageOfPage != null)
+				{
+					AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}", "http://schema.org/primaryImageOfPage",  $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_primaryImageOfPage)}\"", list, " . ");
+				}
 				if(this.Schema_description != null)
 				{
 					AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}",  "http://schema.org/description", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_description)}\"", list, " . ");
@@ -763,13 +750,13 @@ if(item1.HasValue){
 				{
 					AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}",  "http://schema.org/image", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_image)}\"", list, " . ");
 				}
-				if(this.Schema_name != null)
-				{
-					AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}",  "http://schema.org/name", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
-				}
 				if(this.Schema_datePublished != null)
 				{
 					AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}",  "http://schema.org/datePublished", $"{this.Schema_datePublished.ToString("yyyyMMddHHmmss")}", list, " . ");
+				}
+				if(this.Schema_name != null)
+				{
+					AgregarTripleALista($"http://gnoss/{ResourceID.ToString().ToUpper()}",  "http://schema.org/name", $"\"{GenerarTextoSinSaltoDeLinea(this.Schema_name)}\"", list, " . ");
 				}
 				if(this.Schema_contentRating != null)
 				{
@@ -828,6 +815,22 @@ if(item1.HasValue){
 
 
 
+		internal override void AddImages(ComplexOntologyResource pResource)
+		{
+			base.AddImages(pResource);
+			if (!string.IsNullOrEmpty(this.Schema_primaryImageOfPage))
+			{
+				List<ImageAction> actionListprimaryImageOfPage = new List<ImageAction>();
+				pResource.AttachImage(this.Schema_primaryImageOfPage, actionListprimaryImageOfPage,"schema:primaryImageOfPage", true, this.GetExtension(this.Schema_primaryImageOfPage));
+			}
+			if(Schema_rating != null)
+			{
+				foreach (Rating prop in Schema_rating)
+				{
+					prop.AddImages(pResource);
+				}
+			}
+		}
 
 	}
 }

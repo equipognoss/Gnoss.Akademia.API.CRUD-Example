@@ -7,6 +7,7 @@
         <ocultarTituloDescpImgDoc></ocultarTituloDescpImgDoc>
         <TituloDoc EntidadID="http://schema.org/Movie">http://schema.org/name</TituloDoc>
         <DescripcionDoc EntidadID="http://schema.org/Movie">http://schema.org/description</DescripcionDoc>
+        <ImagenDoc EntidadID="http://schema.org/Movie">http://schema.org/description</ImagenDoc>
         <HtmlNuevo>true</HtmlNuevo>
 		<GruposEditoresFijos>
 			<Grupo>administrado</Grupo>
@@ -78,6 +79,11 @@
 					<Ancho>318</Ancho>
 				</Size>				
 			</ImgMiniVP>
+        </Propiedad>
+        <Propiedad  ID="http://schema.org/primaryImageOfPage" EntidadID="http://schema.org/Movie">
+            <AtrNombre>Imagen (carga a servidor)</AtrNombre>
+            <AtrNombreLectura>Imagen (carga a servidor)</AtrNombreLectura>
+			<TipoCampo>Imagen</TipoCampo>			
         </Propiedad>
         <Propiedad  ID="http://schema.org/datePublished" EntidadID="http://schema.org/Movie">
             <AtrNombre>Fecha de publicación</AtrNombre>
@@ -201,6 +207,7 @@
                             <NameProp>http://schema.org/actor</NameProp> 
                             <NameProp>http://schema.org/author</NameProp> 
                             <NameProp>http://schema.org/director</NameProp>  
+                            <NameProp>http://schema.org/primaryImageOfPage</NameProp>  
                         </Grupo>
                     </Grupo>
                 </Grupo>
@@ -237,7 +244,8 @@
 							<NameProp>http://schema.org/award</NameProp> 
                             <NameProp>http://schema.org/actor</NameProp> 
                             <NameProp>http://schema.org/author</NameProp> 
-                            <NameProp>http://schema.org/director</NameProp>  
+                            <NameProp>http://schema.org/director</NameProp>
+                            <NameProp>http://schema.org/primaryImageOfPage</NameProp>  
                         </Grupo>
                     </Grupo>
                 </Grupo>

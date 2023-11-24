@@ -23,14 +23,14 @@
             <AtrNombre>Nombre</AtrNombre>
             <AtrNombreLectura>Nombre</AtrNombreLectura>
         </Propiedad>
-        <Propiedad  ID="http://try.gnoss.com/ontology#place" EntidadID="http://schema.org/Person">
+        <Propiedad  ID="http://try.gnoss.com/ontology#birthPlace" EntidadID="http://schema.org/Person">
             <AtrNombre>Lugar de nacimiento</AtrNombre>
             <AtrNombreLectura>Lugar de nacimiento</AtrNombreLectura>            
         </Propiedad>
 		<!-- Entidades externas -->        
         <Propiedad  ID="http://try.gnoss.com/ontology#placeNode" EntidadID="http://try.gnoss.com/ontology#PlacePath">
             <AtrNombre></AtrNombre>
-            <AtrNombreLectura>http://try.gnoss.com/ontology#placeNode</AtrNombreLectura>
+            <AtrNombreLectura></AtrNombreLectura>
             <SeleccionEntidad>
 				<TipoSeleccion>Tesauro</TipoSeleccion> 
 				<Grafo>taxonomycrudapi.owl</Grafo> 
@@ -111,6 +111,7 @@
                     <Grupo class="fieldset">
                         <Grupo Tipo="fieldset" class="mediumLabels">
                             <NameProp>http://schema.org/name</NameProp>
+                            <NameProp>http://try.gnoss.com/ontology#placeNode</NameProp>
                         </Grupo>
                     </Grupo>
                 </Grupo>
@@ -119,10 +120,10 @@
                 <Grupo classLectura="contentGroup contenidoPrincipal">
                     <Grupo classLectura="group title">
                         <Grupo Tipo="titulo">
-                            <NameProp>http://schema.org/name</NameProp>
+                            <NameProp></NameProp>
                         </Grupo>
                         <Grupo Tipo="subtitulo">
-                            <NameProp>http://schema.org/name</NameProp>
+                            <NameProp></NameProp>
                         </Grupo>
                     </Grupo>
                 </Grupo>
@@ -131,6 +132,7 @@
                         <AtrNombreGrupo>Propiedades</AtrNombreGrupo>
                         <Grupo classLectura="contentGroup">
 							<NameProp>http://schema.org/name</NameProp>
+                            <NameProp>http://try.gnoss.com/ontology#placeNode</NameProp>
                             <NameProp>http://try.gnoss.com/ontology#actorOf</NameProp> 
                             <NameProp>http://try.gnoss.com/ontology#authorOf</NameProp> 
                             <NameProp>http://try.gnoss.com/ontology#directorOf</NameProp> 
@@ -140,8 +142,8 @@
             </OrdenEntidadLectura>
         </Entidad>
           <Entidad  ID="http://try.gnoss.com/ontology#PlacePath">
-            <AtrNombre>http://try.gnoss.com/ontology#PlacePath</AtrNombre>
-            <AtrNombreLectura>http://try.gnoss.com/ontology#PlacePath</AtrNombreLectura>
+            <AtrNombre></AtrNombre>
+            <AtrNombreLectura></AtrNombreLectura>
             <OrdenEntidad>
                 <Grupo class="formtheme02">
                     <Grupo class="fieldset">
