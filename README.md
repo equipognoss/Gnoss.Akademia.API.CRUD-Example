@@ -7,8 +7,6 @@ Ejemplo sencillo en el que se utilizan los principales métodos para la interacc
 - Principales (película, persona)
 - Secundarias (género, lugar)
 
-
-
 # Proyecto.KnowledgeGraph
 
 Repositorio con las aplicaciones encargadas de generar el grafo de conocimiento de un proyecto sencillo con películas. Las solución utiliza una arquitectura de capas donde se separan las capas de presentación/interacción, lógica de negocios y acceso a datos. 
