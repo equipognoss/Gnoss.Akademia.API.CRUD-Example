@@ -107,7 +107,7 @@ internal class Program
             tesauro.Collection.Member.Add(continenteConcept);
         }
         //mThesaurusApi.DeleteThesaurus(tesauro.Source,tesauro.Ontology);
-        mThesaurusApi.CreateThesaurus(tesauro);
+        //mThesaurusApi.CreateThesaurus(tesauro);
         #endregion Carga de un tesauro semantico
 
         #region Carga de géneros (SECUNDARIA)
@@ -130,7 +130,7 @@ internal class Program
             mResourceApi.ChangeOntology("personacrudapi.owl");
             Person personActor1 = new Person();
             personActor1.Schema_name = "Actor1";
-            personActor1.Try_birthPlace = buscarUbicacionPorNombre("España", mResourceApi); //Propiedad de la clase princiapl Person que apunta a la auxiliar (Tesauro)
+            personActor1.Try_birthPlace = buscarUbicacionPorNombre("España", mResourceApi);
             /*
                 Guid guid1 = new Guid("");
                 Guid guid2 = new Guid("");
@@ -379,7 +379,7 @@ internal class Program
 
     private static List<PlacePath> buscarUbicacionPorNombre(string pais, ResourceApi mResourceApi)
     {
-        List<PlacePath> placesPath = new List<PlacePath>();
+        List<PlacePath> resultados = new List<PlacePath>();
 
         // Consulta SPARQL para buscar la ubicación por nombre
          //Obtención del id de la persona cargada en la comunidad
@@ -397,7 +397,7 @@ internal class Program
         {
             foreach (Dictionary<string, SparqlObject.Data> fila in resultadoQuery.results.bindings)
             {
-                placesPath.Add(new PlacePath
+                resultados.Add(new PlacePath
                 {
                     IdsTry_placeNode = new List<string>(){
                         fila["sContinente"].value,
@@ -407,6 +407,6 @@ internal class Program
             }
         }
 
-        return placesPath;
+        return resultados;
     }
 }
