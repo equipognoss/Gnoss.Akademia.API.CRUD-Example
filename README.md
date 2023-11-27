@@ -5,7 +5,7 @@
 Ejemplo sencillo en el que se utilizan los principales métodos para la interacción con un comunidad GNOSS en el marco de GNOSS Akademia.
 
 - Principales [película, persona]
-- Secundarias [género, lugar (tesauro)]
+- Secundarias [género, lugar de nacimiento (tesauro)]
 
 # Proyecto.KnowledgeGraph
 
