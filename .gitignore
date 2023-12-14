@@ -356,3 +356,4 @@ MigrationBackup/
 ApiCRUDExample/Config/
 Config/
 ApiCRUDExample/Config/oAuth.config
+*.config
