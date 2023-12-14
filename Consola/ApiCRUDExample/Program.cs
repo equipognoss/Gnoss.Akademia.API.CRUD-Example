@@ -36,6 +36,13 @@ internal class Program
 
         #region Carga del tesauro principal de una comunidad desde Archivo XML
 
+
+        Thesaurus tesauro = new Thesaurus();
+        //mThesaurusApi.DeleteThesaurus("category", "taxonomy");
+        mThesaurusApi.DeleteCategory("http://cs.gnoss.com/items/Concept_001", "taxonomy");
+
+
+
         mCommunityApi.Log.Debug("Inicio de la Carga del tesauro de la comunidad");
         mCommunityApi.Log.Debug("**************************************");
 
@@ -56,7 +63,7 @@ internal class Program
 
         #endregion Carga del tesauro principal de una comunidad desde Archivo XML
 
-        #region Carga de un tesauro semantico
+        #region Carga de un tesauro semantico + Modificación y eliminación de categorías
 
         mCommunityApi.Log.Debug("Inicio de la Carga del tesauro semántico");
         mCommunityApi.Log.Debug("**************************************");
@@ -76,7 +83,8 @@ internal class Program
             "República Checa", "Eslovaquia", "Eslovenia", "Croacia", "Bosnia y Herzegovina", "Serbia", "Montenegro", "Macedonia", "Albania"
         });
 
-        Thesaurus tesauro = new Thesaurus();
+        //Thesaurus tesauro = new Thesaurus();
+        mThesaurusApi.DeleteThesaurus("category", "taxonomy");
         tesauro.Source = "place";
         tesauro.Ontology = "taxonomycrudapi";
         tesauro.CommunityShortName = "apicrud-example";
@@ -106,6 +114,13 @@ internal class Program
             }
             tesauro.Collection.Member.Add(continenteConcept);
         }
+        tesauro.Collection.Member.FirstOrDefault().PrefLabel = new Dictionary<string, string>() { { "es", "AfricaMod" } };
+
+        //Modificar categoría
+        mThesaurusApi.ModifyCategory(tesauro.Collection.Member.FirstOrDefault(), tesauro.Source, tesauro.Ontology, false);
+        //Borrar categoría (URI del recurso, Nombre de la ontología)
+        mThesaurusApi.DeleteCategory("http://gnoss.com/items/" + tesauro.Collection.Member.FirstOrDefault().Subject, tesauro.Ontology);
+
         //mThesaurusApi.DeleteThesaurus(tesauro.Source,tesauro.Ontology);
         //mThesaurusApi.CreateThesaurus(tesauro);
         #endregion Carga de un tesauro semantico
@@ -122,8 +137,13 @@ internal class Program
         {
             mResourceApi.Log.Error($"Error en la carga del Género con identificador {identificador} -> Nombre: {genero.Schema_name}");
         }
-
         #endregion Carga de géneros (SECUNDARIA)
+
+        #region Borrado de generos (SECUNDARIA)
+        string uriSecundaria = "http://gnoss.com/items/4979b1ad-7af3-4ed0-b9b3-525e7f5ccd77"; //Uri del recurso a borrar
+        List<string> listaUrisSecundariaBorrar = new List<string>() { uriSecundaria };
+        mResourceApi.DeleteSecondaryEntitiesList(ref listaUrisSecundariaBorrar);
+        #endregion Borrado de géneros
 
         #region Carga de personas (PRINCIPAL)
         {
