@@ -1,0 +1,17 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Thesaurus>
+  <Categories>
+    <Category>
+      <Name>Cine 1</Name>
+      <ID>f02cb0aa-9515-4bf7-a72d-eb62c7c24e4j</ID>
+      <Category>
+        <Name>Cine 1.1</Name>
+        <ID>f02cb0aa-9515-4bf7-a72d-eb62c7c24e4l</ID>
+        <Category>
+          <Name>Cine 1.1.1</Name>
+           <ID>f02cb0aa-9515-4bf7-a72d-eb62c7c24e4z</ID>
+        </Category>
+      </Category>
+    </Category>
+  </Categories>
+</Thesaurus>
