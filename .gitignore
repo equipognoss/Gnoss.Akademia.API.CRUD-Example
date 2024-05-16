@@ -5,10 +5,7 @@
 
 
 # Ficheros de configuración / Variables de entorno
- Consola/ApiCRUDExample/ApiCRUDExample/Config/*
- ./Consola/ApiCRUDExample/ApiCRUDExample/Config/*
-# Config/
-# ApiCRUDExample/Config/oAuth.config
+Consola/ApiCRUDExample/Config/oAuth.config
 *.config
 Consola/ApiCRUDExample/Documents/Documents.zip
 Gnoss.Akademia.API.CRUD-Example.rar
@@ -362,5 +359,3 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-
-Consola/ApiCRUDExample/Config/oAuth.config
