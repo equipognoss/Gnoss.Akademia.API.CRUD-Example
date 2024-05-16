@@ -1,5 +1,4 @@
-﻿// Comunidad -> https://try.gnoss.com/comunidad/apicrud-example/administrar-objetos-conocimiento
-using Gnoss.ApiWrapper;
+﻿using Gnoss.ApiWrapper;
 using Gnoss.ApiWrapper.ApiModel;
 using Gnoss.ApiWrapper.Model;
 using System.Xml;
@@ -9,12 +8,12 @@ using PersonacrudapiOntology;
 using PeliculacrudapiOntology;
 using Newtonsoft.Json.Linq;
 
-#region Conexión y datos de la comunidad
-
 internal class Program
 {
     private static void Main(string[] args)
     {
+        #region Conexión y datos de la comunidad
+
         string pathOAuth = @"Config\oAuth.config";
         ResourceApi mResourceApi = new ResourceApi(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));      
         CommunityApi mCommunityApi = new CommunityApi(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
@@ -38,8 +37,6 @@ internal class Program
         Console.WriteLine("---FIN USUARIOS--");
 
         #endregion Conexión con la comunidad
-
-        //mResourceApi.PersistentDelete(new Guid("130c8b8f-668c-bed2-8b52-d3008c6ccfea"), true, true);
 
         #region Carga del tesauro principal de una comunidad desde Archivo XML
 
@@ -412,8 +409,7 @@ internal class Program
 
         #endregion Añadir triples
 
-        #region Limpiar las películas de categorías para poder cargar/actualizar el Tesauro de la comunidad
-        
+        #region Limpiar las películas de categorías para poder cargar/actualizar el Tesauro de la comunidad        
              
         //Método que desetiqueta las películas para poder modificar el TESAURO
         void BorrarCategoriasDeRecursos(string nombreowl)
