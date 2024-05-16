@@ -21,6 +21,6 @@ jobs:
       with:
         dotnet-version: 6.0.x
     - name: Restore dependencies
-      run: dotnet restore .\Consola
+      run: dotnet restore ./Consola
     - name: Build
-      run: dotnet build .\Consola  --no-restore
+      run: dotnet build ./Consola  --no-restore
