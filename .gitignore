@@ -353,7 +353,9 @@ MigrationBackup/
 .ionide/
 
 # Ficheros de configuración / Variables de entorno
-ApiCRUDExample/Config/
-Config/
+# ApiCRUDExample/Config/
+# Config/
 ApiCRUDExample/Config/oAuth.config
 *.config
+Consola/ApiCRUDExample/Documents/Documents.zip
+Gnoss.Akademia.API.CRUD-Example.rar
