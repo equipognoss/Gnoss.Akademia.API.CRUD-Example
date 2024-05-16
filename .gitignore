@@ -8,7 +8,7 @@
  ApiCRUDExample/Config/
 # Config/
 # ApiCRUDExample/Config/oAuth.config
-# *.config
+*.config
 Consola/ApiCRUDExample/Documents/Documents.zip
 Gnoss.Akademia.API.CRUD-Example.rar
 RestAPI/
