@@ -5,7 +5,8 @@
 
 
 # Ficheros de configuración / Variables de entorno
- ApiCRUDExample/Config/
+ Consola/ApiCRUDExample/ApiCRUDExample/Config/*
+ ./Consola/ApiCRUDExample/ApiCRUDExample/Config/*
 # Config/
 # ApiCRUDExample/Config/oAuth.config
 *.config
