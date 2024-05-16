@@ -21,6 +21,6 @@ jobs:
       with:
         dotnet-version: 8.0.x
     - name: Restore dependencies
-      run: dotnet .\Consola restore
+      run: dotnet restore .\Consola
     - name: Build
       run: dotnet build .\Consola  --no-restore
