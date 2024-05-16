@@ -363,3 +363,4 @@ MigrationBackup/
 .ionide/
 
 
+Consola/ApiCRUDExample/Config/oAuth.config
