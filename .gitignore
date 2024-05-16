@@ -3,7 +3,6 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
-
 # Ficheros de configuración / Variables de entorno
 Consola/ApiCRUDExample/Config/oAuth.config
 *.config
@@ -359,3 +358,5 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
+Consola/ApiCRUDExample/Config/oAuth.config
+Consola/ApiCRUDExample/Config/oAuth.config
