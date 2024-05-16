@@ -7,6 +7,7 @@ using System.Text;
 using GenerocrudapiOntology;
 using PersonacrudapiOntology;
 using PeliculacrudapiOntology;
+using Newtonsoft.Json.Linq;
 
 #region Conexión y datos de la comunidad
 
@@ -15,47 +16,50 @@ internal class Program
     private static void Main(string[] args)
     {
         string pathOAuth = @"Config\oAuth.config";
-
-        ResourceApi mResourceApi = new ResourceApi(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
+        ResourceApi mResourceApi = new ResourceApi(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));      
         CommunityApi mCommunityApi = new CommunityApi(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
         ThesaurusApi mThesaurusApi = new ThesaurusApi(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
+        UserApi mUserApi = new UserApi(Path.Combine(AppDomain.CurrentDomain.SetupInformation.ApplicationBase, pathOAuth));
 
-        Console.WriteLine(mCommunityApi.GetCommunityInfo().name);
-        Console.WriteLine(mCommunityApi.GetCommunityInfo().short_name);
-
+        Console.WriteLine($"Id de la Comunidad -> {mCommunityApi.GetCommunityId()}");
+        Console.WriteLine($"Nombre de la Comunidad -> {mCommunityApi.GetCommunityInfo().name}");       
+        Console.WriteLine($"Nombre Corto de la Comunidad -> {mCommunityApi.GetCommunityInfo().short_name}");
+        Console.WriteLine($"Descripción de la comunidad inicial -> {mCommunityApi.GetCommunityInfo().description}");
+        Console.WriteLine($"Categorías de la Comunidad -> {string.Join(", ", mCommunityApi.CommunityCategories.Select(categoria=>categoria.category_name))}");        
         Console.WriteLine("USUARIOS");
-        foreach (var usuario in mCommunityApi.GetCommunityInfo().users)
+        
+        foreach (var guidUsuario in mCommunityApi.GetCommunityInfo().users)
         {
-            Console.WriteLine(usuario.ToString());
+            Console.WriteLine(guidUsuario.ToString());
+            KeyValuePair<Guid, Userlite> primerUsuario = mUserApi.GetUsersByIds(new List<Guid>() { guidUsuario }).FirstOrDefault();
+            string nombrePrimerUsuario = primerUsuario.Value.user_short_name;
         }
-        Console.WriteLine("---FIN USUARIOS--");
 
-        Console.WriteLine(mCommunityApi.GetCommunityInfo().description);
+        Console.WriteLine("---FIN USUARIOS--");
 
         #endregion Conexión con la comunidad
 
+        //mResourceApi.PersistentDelete(new Guid("130c8b8f-668c-bed2-8b52-d3008c6ccfea"), true, true);
+
         #region Carga del tesauro principal de una comunidad desde Archivo XML
-
-
-        Thesaurus tesauro = new Thesaurus();
-        //mThesaurusApi.DeleteThesaurus("category", "taxonomy");
-        mThesaurusApi.DeleteCategory("http://cs.gnoss.com/items/Concept_001", "taxonomy");
-
-
 
         mCommunityApi.Log.Debug("Inicio de la Carga del tesauro de la comunidad");
         mCommunityApi.Log.Debug("**************************************");
 
-        BorrarCategoriasDeRecursos("peliculacrudapi");  //Si hay recursos categorizados no se puede borrar el TESAURO
+        // Si hay recursos Categorizados contra alguna categoría del Tesauro, no se puede borrar el TESAURO
+        // Eliminamos el vinculo de cualquier recurso con cualquier Categoría
+        BorrarCategoriasDeRecursos("peliculacrudapi");  
         BorrarCategoriasDeRecursos("personacrudapi");
-        // Lee del XML la estrucutra del tesauro (categorías) a cargar en la comunidad
 
+        // Leemos del XML la estrucutra del Tesauro (Categorías) a cargar en la Comunidad
         XmlDocument xmlCategorias = new XmlDocument();
         xmlCategorias.Load($"{AppDomain.CurrentDomain.SetupInformation.ApplicationBase}Documents\\ESTRUCTURA_CATEGORIAS_COMPLETO_MOD_SIN.xml");
         //mCommunityApi.CreateThesaurus(xmlCategorias.OuterXml);
 
-        //Obtener el tesauro de una comunidad (XML)
+        //Obtenemos el Tesauro de Categorías de la comunidad (XML)
         string xml = mCommunityApi.GetThesaurus();
+
+        //Imprimimos por Consola el Tesauro Cargado
         Console.WriteLine(xml);
 
         mCommunityApi.Log.Debug("**************************************");
@@ -83,7 +87,12 @@ internal class Program
             "República Checa", "Eslovaquia", "Eslovenia", "Croacia", "Bosnia y Herzegovina", "Serbia", "Montenegro", "Macedonia", "Albania"
         });
 
+        Thesaurus tesauro = new Thesaurus();
+
         //Thesaurus tesauro = new Thesaurus();
+        //mThesaurusApi.DeleteThesaurus("category", "taxonomy");
+        //mThesaurusApi.DeleteCategory("http://cs.gnoss.com/items/Concept_001", "taxonomy");
+        
         mThesaurusApi.DeleteThesaurus("category", "taxonomy");
         tesauro.Source = "place";
         tesauro.Ontology = "taxonomycrudapi";
@@ -126,23 +135,51 @@ internal class Program
         #endregion Carga de un tesauro semantico
 
         #region Carga de géneros (SECUNDARIA)
-        string identificador = Guid.NewGuid().ToString(); //Se pone en el grafo de ontología
-        Genre genero = new(identificador + "IDdistinctorio"); //Se pone en el grafo de búsqueda
-        genero.Schema_name = "NombreGeneroAhIDdistinctorio";
-        mResourceApi.ChangeOntology("generocrudapi.owl");
-        SecondaryResource generoSR = genero.ToGnossApiResource(mResourceApi, identificador); 
+        //string identificador = Guid.NewGuid().ToString(); //Se pone en el grafo de ontología
+        //Genre genero = new(identificador + "IDdistinctorio"); //Se pone en el grafo de búsqueda
+        //genero.Schema_name = "NombreGeneroAhIDdistinctorio";
+        //mResourceApi.ChangeOntology("generocrudapi.owl");
+        //SecondaryResource generoSR = genero.ToGnossApiResource(mResourceApi, identificador); 
         //mResourceApi.LoadSecondaryResource(generoSR);
 
-        if (!generoSR.Uploaded)
-        {
-            mResourceApi.Log.Error($"Error en la carga del Género con identificador {identificador} -> Nombre: {genero.Schema_name}");
+        string identificador = Guid.NewGuid().ToString(); //Se pone en el grafo de ontología
+        Genre genero = new(identificador); //Se pone en el grafo de búsqueda
+        genero.Schema_name = "Fantasía";
+        mResourceApi.ChangeOntology("generocrudapi.owl");
+        SecondaryResource generoSR = genero.ToGnossApiResource(mResourceApi, $"Genre_{identificador}");
+        string mensajeFalloCarga = $"Error en la carga del Género con identificador {identificador} -> Nombre: {genero.Schema_name}";
+        try {
+            mResourceApi.LoadSecondaryResource(generoSR);
+            if (!generoSR.Uploaded)
+            {                
+                mResourceApi.Log.Error(mensajeFalloCarga);
+            }
         }
-        #endregion Carga de géneros (SECUNDARIA)
+        catch(Exception) {
+            mResourceApi.Log.Error($"Exception -> {mensajeFalloCarga}");
+        }
+        #endregion Carga de géneros
+
+        #region Modificación de Género (SECUNDARIA)
+        string mensajeFalloMod = $"Error en la actualización del Género con identificador {identificador} -> Nombre: {genero.Schema_name}";
+        try
+        {
+            genero.Schema_name = "FantasíaModificado";
+            generoSR = genero.ToGnossApiResource(mResourceApi, $"Genre_{identificador}");
+            mResourceApi.ModifySecondaryResource(generoSR);            
+        }
+        catch (Exception)
+        {
+            mResourceApi.Log.Error($"Exception -> {mensajeFalloMod}");          
+        }        
+        #endregion Modificación de Género
 
         #region Borrado de generos (SECUNDARIA)
+
         string uriSecundaria = "http://gnoss.com/items/4979b1ad-7af3-4ed0-b9b3-525e7f5ccd77"; //Uri del recurso a borrar
         List<string> listaUrisSecundariaBorrar = new List<string>() { uriSecundaria };
         mResourceApi.DeleteSecondaryEntitiesList(ref listaUrisSecundariaBorrar);
+
         #endregion Borrado de géneros
 
         #region Carga de personas (PRINCIPAL)
@@ -150,7 +187,7 @@ internal class Program
             mResourceApi.ChangeOntology("personacrudapi.owl");
             Person personActor1 = new Person();
             personActor1.Schema_name = "Actor1";
-            personActor1.Try_birthPlace = buscarUbicacionPorNombre("España", mResourceApi);
+            //personActor1.Try_birthPlace = buscarUbicacionPorNombre("España", mResourceApi);
             /*
                 Guid guid1 = new Guid("");
                 Guid guid2 = new Guid("");
@@ -165,43 +202,50 @@ internal class Program
         #region Modificación de personas (PRINCIPAL)
 
         string uri = "";    
+        
+        //Obtención del id de la persona cargada en la comunidad
+        string pOntology = "personacrudapi";
+        string select = string.Empty, where = string.Empty;
+        select += $@"SELECT DISTINCT ?s";
+        where += $@" WHERE {{ ";
+        where += $@"OPTIONAL{{?s ?p 'Actor1'.}}";
+        where += $@"}}";
+
+        SparqlObject resultadoQuery = mResourceApi.VirtuosoQuery(select, where, pOntology);
+        //Si está ya en el grafo, obtengo la URI
+        if (resultadoQuery != null && resultadoQuery.results != null && resultadoQuery.results.bindings != null && resultadoQuery.results.bindings.Count > 0 && resultadoQuery.results.bindings.FirstOrDefault()?.Keys.Count > 0)
         {
-            //Obtención del id de la persona cargada en la comunidad
-            string pOntology = "personacrudapi";
-            string select = string.Empty, where = string.Empty;
-            select += $@"SELECT DISTINCT ?s";
-            where += $@" WHERE {{ ";
-            where += $@"OPTIONAL{{?s ?p 'Actor1'.}}";
-            where += $@"}}";
-
-            SparqlObject resultadoQuery = mResourceApi.VirtuosoQuery(select, where, pOntology);
-            //Si está ya en el grafo, obtengo la URI
-            if (resultadoQuery != null && resultadoQuery.results != null && resultadoQuery.results.bindings != null && resultadoQuery.results.bindings.Count > 0 && resultadoQuery.results.bindings.FirstOrDefault()?.Keys.Count > 0)
+            foreach (var item in resultadoQuery.results.bindings)
             {
-                foreach (var item in resultadoQuery.results.bindings)
-                {
-                    uri = item["s"].value;
-                }
+                uri = item["s"].value;
             }
-
-            //Obtención de los dos IDs a través de la URI
-            string[] partes = uri.Split('/', '_');
-
-            string resourceId = partes[5];
-            string articleID = partes[6];
-
-            Person personaActor1Modificado = new Person();
-            personaActor1Modificado.Schema_name = "Actor1Modificado";
-
-            mResourceApi.ModifyComplexOntologyResource(personaActor1Modificado.ToGnossApiResource(mResourceApi, new List<string>() {"Cine 1"}, new Guid(resourceId), new Guid(articleID)), false, true);
         }
+
+        //Obtención de los dos IDs a través de la URI
+        string[] partes = uri.Split('/', '_');
+
+        string resourceId = partes[5];
+        string articleID = partes[6];
+
+        Person personaActor1Modificado = new Person();
+        personaActor1Modificado.Schema_name = "Actor1Modificado";
+
+        mResourceApi.ModifyComplexOntologyResource(personaActor1Modificado.ToGnossApiResource(mResourceApi, new List<string>() {"Cine 1"}, new Guid(resourceId), new Guid(articleID)), false, true);
+        
         #endregion Modificación de personas (PRINCIPAL)
 
         #region Borrado de personas (PRINCIPAL)
 
+        string mensajeFalloBorradoRecPrincipal = $"Error en el borrado de la Persona {uri} -> Nombre: {personaActor1Modificado.Schema_name}";
+        try
         {
+            mResourceApi.ChangeOntology("personacrudapi.owl");
             mResourceApi.PersistentDelete(mResourceApi.GetShortGuid(uri), true, true);
         }
+        catch (Exception)
+        {
+            mResourceApi.Log.Error($"Exception -> {mensajeFalloBorradoRecPrincipal}");
+        }    
 
         #endregion Borrado de personas (PRINCIPAL)
 
@@ -216,14 +260,15 @@ internal class Program
 
         #region Obtención del id de la persona cargada en la comunidad
         {
-            string pOntology = "personacrudapi";
-            string select = string.Empty, where = string.Empty;
+            pOntology = "personacrudapi";
+            select = string.Empty;
+            where = string.Empty;
             select += $@"SELECT DISTINCT ?s";
             where += $@" WHERE {{ ";
             where += $@"OPTIONAL{{?s ?p 'Actor2'.}}";
             where += $@"}}";
 
-            SparqlObject resultadoQuery = mResourceApi.VirtuosoQuery(select, where, pOntology);
+            resultadoQuery = mResourceApi.VirtuosoQuery(select, where, pOntology);
             //Si está ya en el grafo, obtengo la URI
             if (resultadoQuery != null && resultadoQuery.results != null && resultadoQuery.results.bindings != null && resultadoQuery.results.bindings.Count > 0)
             {
@@ -262,14 +307,15 @@ internal class Program
             #endregion
 
             string nombreActual = string.Empty;
-            string pOntology = "personacrudapi";
-            string select = string.Empty, where = string.Empty;
+            pOntology = "personacrudapi";
+            select = string.Empty;
+            where = string.Empty;
             select += "SELECT ?name ";
             where += "WHERE { ";
             where += $"<{uri}> <{predicadoSechemaName}> ?name.";
             where += "}";
 
-            SparqlObject resultadoQuery = mResourceApi.VirtuosoQuery(select, where, pOntology);
+            resultadoQuery = mResourceApi.VirtuosoQuery(select, where, pOntology);
 
             if (resultadoQuery?.results?.bindings?.Count > 0)
             {
@@ -368,8 +414,7 @@ internal class Program
 
         #region Limpiar las películas de categorías para poder cargar/actualizar el Tesauro de la comunidad
         
-        
-        
+             
         //Método que desetiqueta las películas para poder modificar el TESAURO
         void BorrarCategoriasDeRecursos(string nombreowl)
         {

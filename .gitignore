@@ -3,6 +3,16 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/master/VisualStudio.gitignore
 
+
+# Ficheros de configuración / Variables de entorno
+# ApiCRUDExample/Config/
+# Config/
+# ApiCRUDExample/Config/oAuth.config
+# *.config
+Consola/ApiCRUDExample/Documents/Documents.zip
+Gnoss.Akademia.API.CRUD-Example.rar
+RestAPI/
+
 # User-specific files
 *.rsuser
 *.suo
@@ -317,7 +327,6 @@ __pycache__/
 
 # Telerik's JustMock configuration file
 *.jmconfig
-*.config
 
 # BizTalk build output
 *.btp.cs
@@ -352,8 +361,4 @@ MigrationBackup/
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
 
-# Ficheros de configuración / Variables de entorno
-ApiCRUDExample/Config/
-Config/
-ApiCRUDExample/Config/oAuth.config
-*.config
+
