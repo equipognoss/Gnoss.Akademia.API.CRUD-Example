@@ -7,6 +7,7 @@ using GenerocrudapiOntology;
 using PersonacrudapiOntology;
 using PeliculacrudapiOntology;
 using Newtonsoft.Json.Linq;
+using System;
 
 internal class Program
 {
@@ -353,7 +354,7 @@ internal class Program
                 else
                 {
                     mResourceApi.Log.Error($"Error al modificar el recurso con GUID: {guidRecurso}.");
-                }
+                }          
             }
         }
 
@@ -396,6 +397,8 @@ internal class Program
 
             Dictionary<Guid, bool> dicInsertado = mResourceApi.InsertPropertiesLoadedResources(diccIncluirTriples);
 
+           
+
             // Comprobamos si se ha incluido corerctamente
             if (dicInsertado != null && dicInsertado.ContainsKey(idCortoPelicula) && dicInsertado[idCortoPelicula])
             {
@@ -409,8 +412,72 @@ internal class Program
 
         #endregion Añadir triples
 
+
+
+        #region Eliminar triples
+
+        {
+            #region Predicados
+
+            string predicadoSechemaName = "http://schema.org/name";
+
+            #endregion
+
+            string nombreActual = string.Empty;
+            pOntology = "personacrudapi";
+            select = string.Empty;
+            where = string.Empty;
+            select += "SELECT ?name ";
+            where += "WHERE { ";
+            where += $"<{uri}> <{predicadoSechemaName}> ?name.";
+            where += "}";
+
+            resultadoQuery = mResourceApi.VirtuosoQuery(select, where, pOntology);
+
+            if (resultadoQuery?.results?.bindings?.Count > 0)
+            {
+                foreach (var item in resultadoQuery.results.bindings)
+                {
+                    nombreActual = item["name"].value;
+                    break;
+                }        
+
+                List<RemoveTriples> listaTriplesEliminar = new List<RemoveTriples>();
+
+                // Añade el triple a modificar a la lista
+                listaTriplesEliminar.Add(
+                    new RemoveTriples()
+                    {
+                        Predicate = predicadoSechemaName,
+                        Value = nombreActual                     
+                    }
+                );
+
+                Guid guidRecurso = mResourceApi.GetShortGuid(uri);
+
+
+                Dictionary<Guid, List<RemoveTriples>> diccEliminarTriples = new Dictionary<Guid, List<RemoveTriples>>();
+                diccEliminarTriples.Add(guidRecurso,listaTriplesEliminar);
+
+
+                Dictionary<Guid, bool> dicEliminado = mResourceApi.DeletePropertiesLoadedResources(diccEliminarTriples);
+
+                // Comprobamos si se ha modificado corerctamente
+                if (dicEliminado != null && dicEliminado.ContainsKey(guidRecurso) && dicEliminado[guidRecurso])
+                {
+                    mResourceApi.Log.Info("Se ha eliminado con exito.");
+                }
+                else
+                {
+                    mResourceApi.Log.Error($"Error al eliminar los triples del recurso con GUID: {guidRecurso}.");
+                }
+            }
+        }
+
+        #endregion Añadir triples
+
         #region Limpiar las películas de categorías para poder cargar/actualizar el Tesauro de la comunidad        
-             
+
         //Método que desetiqueta las películas para poder modificar el TESAURO
         void BorrarCategoriasDeRecursos(string nombreowl)
         {
@@ -443,7 +510,7 @@ internal class Program
         List<PlacePath> resultados = new List<PlacePath>();
 
         // Consulta SPARQL para buscar la ubicación por nombre
-         //Obtención del id de la persona cargada en la comunidad
+        // Obtención del id de la persona cargada en la comunidad
         string pOntology = "taxonomycrudapi";
         string select = string.Empty, where = string.Empty;
         select += $@"SELECT DISTINCT ?sContinente ?sPais";
